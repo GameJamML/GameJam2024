@@ -526,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 1410589660740832722, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
       propertyPath: m_Name
-      value: player
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1410589660740866546, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
@@ -578,21 +578,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
+    - target: {fileID: 3846016659044166023, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
-      propertyPath: speed
-      value: 4
+      propertyPath: m_LocalPosition.y
+      value: -0.104
       objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
+    - target: {fileID: 3846016659044166023, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
-      propertyPath: rotateSpeed
-      value: 20
+      propertyPath: m_LocalPosition.z
+      value: 0.612
       objectReference: {fileID: 0}
     - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
       propertyPath: relativeTransform
       value: 
       objectReference: {fileID: 974044695}
+    - target: {fileID: 7401091265208048668, guid: 5032c2469e121dd40bbfd292528255ae,
+        type: 3}
+      propertyPath: _attakDelaySpeed
+      value: 0.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
