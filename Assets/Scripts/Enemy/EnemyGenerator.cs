@@ -8,8 +8,10 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject[] enemiesType;
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
     List<GameObject> pullEnemies = new List<GameObject>();
+    List<GameObject> pullEnemiesDone = new List<GameObject>();
     private float lastGenerated = 0;
-    public float generationrate;
+    [SerializeField] private float generationrate;
+    [SerializeField] private int numberOfEachEnemy;
     void Start()
     {
         CreatePool();
@@ -19,7 +21,7 @@ public class EnemyGenerator : MonoBehaviour
     void Update()
     {
         lastGenerated += Time.deltaTime;
-        if (lastGenerated >= generationrate)
+        if (lastGenerated >= generationrate && pullEnemies.Count != 0)
         {
             Spawner();
             lastGenerated = 0f;
@@ -31,13 +33,21 @@ public class EnemyGenerator : MonoBehaviour
     {   
         float posX = 0f;
         float posZ = 0f;
-        GameObject newEnemy = pullEnemies[enemyRandomizer(pullEnemies.Count)];
+        int enemySelected = enemyRandomizer(pullEnemies.Count);
         Vector3 randomPosition = setRandomPosition(posX, posZ);
-        if (CheckInNaveMesh(randomPosition) == true && newEnemy.activeSelf == false)
+        if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false)
         {
-            newEnemy.transform.position = randomPosition;
-            newEnemy.SetActive(true);
+            pullEnemies[enemySelected].transform.position = randomPosition;
+            pullEnemies[enemySelected].SetActive(true);
+            SwapListDone(enemySelected);
+
         }
+    }
+
+    void SwapListDone(int enemySelected)
+    {
+        pullEnemiesDone.Add(pullEnemies[enemySelected]);
+        pullEnemies.Remove(pullEnemies[enemySelected]);
     }
     int enemyRandomizer(int maxrange)
     {
@@ -48,7 +58,6 @@ public class EnemyGenerator : MonoBehaviour
 
    bool CheckInNaveMesh(Vector3 randPosition)
    {
-
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randPosition, out hit, 1.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
         {
@@ -67,23 +76,25 @@ public class EnemyGenerator : MonoBehaviour
 
     void CreatePool()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < numberOfEachEnemy; i++)
         {
             GameObject newEnemy = Instantiate(enemiesType[0], new Vector3(0, 100, 0), Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < numberOfEachEnemy; i++)
         {
             GameObject newEnemy = Instantiate(enemiesType[1], new Vector3(0, 100, 0), Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < numberOfEachEnemy; i++)
         {
             GameObject newEnemy = Instantiate(enemiesType[2], new Vector3(0, 100, 0), Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
     }
+
+
 }

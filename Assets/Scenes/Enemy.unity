@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 6160841737891320214, guid: da28fd138f685fc459016ba91b6c1a16, type: 3}
   naveMeshLayer: {fileID: 284182568}
   generationrate: 1
+  numberOfEachEnemy: 3
 --- !u!4 &268837862
 Transform:
   m_ObjectHideFlags: 0
