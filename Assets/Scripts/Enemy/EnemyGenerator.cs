@@ -12,6 +12,7 @@ public class EnemyGenerator : MonoBehaviour
     private float lastGenerated = 0;
     [SerializeField] private float generationrate;
     [SerializeField] private int numberOfEachEnemy;
+    private Vector3 startEnemies = new Vector3(0, 100, 0);
     void Start()
     {
         CreatePool();
@@ -39,34 +40,40 @@ public class EnemyGenerator : MonoBehaviour
         {
             pullEnemies[enemySelected].transform.position = randomPosition;
             pullEnemies[enemySelected].SetActive(true);
-            SwapListDone(enemySelected);
+            SwapListCreatedEnemy(enemySelected);
 
         }
     }
 
-    void SwapListDone(int enemySelected)
+    private void SwapListCreatedEnemy(int enemySelected)
     {
         pullEnemiesDone.Add(pullEnemies[enemySelected]);
         pullEnemies.Remove(pullEnemies[enemySelected]);
     }
-    int enemyRandomizer(int maxrange)
+    
+    private void SwapListKilledEnemy(int enemySelected)
+    {
+        pullEnemies.Add(pullEnemies[enemySelected]);
+        pullEnemiesDone.Remove(pullEnemies[enemySelected]);
+    }
+    private int enemyRandomizer(int maxrange)
     {
         int randomEnemy;
         randomEnemy = Random.Range(0, maxrange);
         return randomEnemy;
     }
 
-   bool CheckInNaveMesh(Vector3 randPosition)
-   {
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randPosition, out hit, 1.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
-        {
-            return true;
-        }
-       return false;
-   }
+    private bool CheckInNaveMesh(Vector3 randPosition)
+    {
+         NavMeshHit hit;
+         if (NavMesh.SamplePosition(randPosition, out hit, 1.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
+         {
+             return true;
+         }
+        return false;
+    }
 
-    Vector3 setRandomPosition(float posX, float posZ)
+    private Vector3 setRandomPosition(float posX, float posZ)
     {
         posX = Random.Range(gameObject.transform.position.x - 10f, gameObject.transform.position.x + 10f);
         posZ = Random.Range(gameObject.transform.position.z - 10f, gameObject.transform.position.z + 10f);
@@ -74,27 +81,32 @@ public class EnemyGenerator : MonoBehaviour
         return randomPos;
     }
 
-    void CreatePool()
+    private void CreatePool()
     {
         for (int i = 0; i < numberOfEachEnemy; i++)
         {
-            GameObject newEnemy = Instantiate(enemiesType[0], new Vector3(0, 100, 0), Quaternion.identity, transform);
+            GameObject newEnemy = Instantiate(enemiesType[0], startEnemies, Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
         for (int i = 0; i < numberOfEachEnemy; i++)
         {
-            GameObject newEnemy = Instantiate(enemiesType[1], new Vector3(0, 100, 0), Quaternion.identity, transform);
+            GameObject newEnemy = Instantiate(enemiesType[1], startEnemies, Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
         for (int i = 0; i < numberOfEachEnemy; i++)
         {
-            GameObject newEnemy = Instantiate(enemiesType[2], new Vector3(0, 100, 0), Quaternion.identity, transform);
+            GameObject newEnemy = Instantiate(enemiesType[2], startEnemies, Quaternion.identity, transform);
             newEnemy.SetActive(false);
             pullEnemies.Add(newEnemy);
         }
     }
 
-
+    public void destroyEnemy(bool isDead, int enemy)
+    {
+        pullEnemiesDone[enemy].transform.position = startEnemies;
+        pullEnemiesDone[enemy].SetActive(false);
+        SwapListKilledEnemy(enemy);
+    }
 }
