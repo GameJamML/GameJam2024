@@ -7,9 +7,9 @@ public class EnemyMovment : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private GameObject player;
-
     public delegate void OnEnemyDeath();
     public static event OnEnemyDeath EnemyDeadEvent;
+    bool cached = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,10 @@ public class EnemyMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        enemy.SetDestination(player.transform.position);
-
+        if (cached == false)
+        {
+            enemy.SetDestination(player.transform.position);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,6 +32,34 @@ public class EnemyMovment : MonoBehaviour
         {
             EnemyDeadEvent();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+                Caught(true);
+            Debug.Log("soc dins");
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+            Caught(false);
+            Debug.Log("soc Out");
+        }
+    }
+
+    void Caught(bool caught)
+    {
+        cached = caught;
+        if (caught == true)
+        {
+            gameObject.transform.RotateAround(transform.position, transform.up, Time.deltaTime * 90f);
+        }
+
     }
 
 }

@@ -83,24 +83,17 @@ public class EnemyGenerator : MonoBehaviour
 
     private void CreatePool()
     {
-        for (int i = 0; i < numberOfEachEnemy; i++)
+        for (int i = 0; i < enemiesType.Length; i++)
         {
-            GameObject newEnemy = Instantiate(enemiesType[0], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
+            for (int j = 0; j < numberOfEachEnemy; j++)
+            {
+                GameObject newEnemy = Instantiate(enemiesType[i], startEnemies, Quaternion.identity, transform);
+                newEnemy.SetActive(false);
+                pullEnemies.Add(newEnemy);
+            }
+
         }
-        for (int i = 0; i < numberOfEachEnemy; i++)
-        {
-            GameObject newEnemy = Instantiate(enemiesType[1], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
-        }
-        for (int i = 0; i < numberOfEachEnemy; i++)
-        {
-            GameObject newEnemy = Instantiate(enemiesType[2], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
-        }
+      
     }
 
     public void destroyEnemy(bool isDead, int enemy)
