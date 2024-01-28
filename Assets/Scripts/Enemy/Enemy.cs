@@ -65,7 +65,7 @@ public class EnemyMovment : MonoBehaviour
             //gameObject.transform.position = new Vector3(0, 0, 0);
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
-
     }
 
+    
 }
