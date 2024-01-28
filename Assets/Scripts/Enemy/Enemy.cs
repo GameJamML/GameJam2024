@@ -28,6 +28,11 @@ public class EnemyMovment : MonoBehaviour
         {
             enemy.SetDestination(player.transform.position);
         }
+        else
+        {
+            //gameObject.transform.position = new Vector3(0, 0, 0);
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,42 +47,29 @@ public class EnemyMovment : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.CompareTag("PlayerAttack"))
-        {
-            //KillEnemy();
-            Caught(true);
-        }
+        Debug.Log("enemy trigger");
+    }
+    public void EnemyCatched()
+    {
+        cached = true;
+        enemy.isStopped = true;
+        Debug.Log("catched");
     }
 
-    private void OnTriggerExit(Collider other)
+    public void EnemyEscaped()
     {
-        if (other.gameObject.CompareTag("PlayerAttack"))
-        {
-            Caught(false);
-            enemy.speed = initialspeed;
-
-        }
+        cached = false;
+        enemy.isStopped = false;
+        enemy.speed = initialspeed;
     }
 
-    void Caught(bool caught)
-    {
-        cached = caught;
-        enemy.isStopped = caught;
-
-        if (caught == true)
-        {
-            //gameObject.transform.position = new Vector3(0, 0, 0);
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-        }
-    }
-
-    void KillEnemy()
+    public void KillEnemy()
     {
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
+
 
 }

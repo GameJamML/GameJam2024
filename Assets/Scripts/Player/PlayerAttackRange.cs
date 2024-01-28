@@ -10,7 +10,9 @@ public class PlayerAttackRange : MonoBehaviour
         {
             _firstContactEnemy = other.gameObject;
             _firstContactEnemy.SendMessage("EnemyCatched");
+            Debug.Log("catched Enter");
         }
+        Debug.Log("If not Enter");
     }
 
     private void OnTriggerExit(Collider other)
