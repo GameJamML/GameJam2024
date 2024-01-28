@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_6573cce4d6844870a9e0ebba11137a56_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: fd4aba9d47ea4f54a9013b055278199a, type: 3}
+        m_Texture: {fileID: 2800000, guid: ac18be18585df744980d953a87561c2e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -138,11 +138,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.35959414, g: 0.638968, b: 0.735849, a: 1}
-    - _Base_Color: {r: 0.30588233, g: 0.52399045, b: 0.78039217, a: 0}
+    - _Base_Color: {r: 0.4486144, g: 0.4867924, b: 0.4472979, a: 0}
     - _Color: {r: 0.3595941, g: 0.63896793, b: 0.735849, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 0}
     - _ShadowColorPattern: {r: 1, g: 1, b: 1, a: 0}
-    - _ShadowTiling: {r: 5, g: 5, b: 0, a: 0}
+    - _ShadowTiling: {r: 1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
