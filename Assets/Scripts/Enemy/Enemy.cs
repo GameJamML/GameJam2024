@@ -9,12 +9,15 @@ public class EnemyMovment : MonoBehaviour
     private GameObject player;
     public delegate void OnEnemyDeath();
     public static event OnEnemyDeath EnemyDeadEvent;
-    bool cached = false;
-
+    private bool cached = false;
+    public float rotationSpeed;
+    private float initialspeed;
+    public Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Baby");
+        initialspeed = enemy.speed;
     }
 
     // Update is called once per frame
@@ -34,12 +37,11 @@ public class EnemyMovment : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
-                Caught(true);
-            Debug.Log("soc dins");
+            Caught(true);
         }
     }
     
@@ -48,16 +50,20 @@ public class EnemyMovment : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
             Caught(false);
-            Debug.Log("soc Out");
+            enemy.speed = initialspeed;
+
         }
     }
 
     void Caught(bool caught)
     {
         cached = caught;
+        enemy.isStopped = caught;
+
         if (caught == true)
         {
-            gameObject.transform.RotateAround(transform.position, transform.up, Time.deltaTime * 90f);
+            //gameObject.transform.position = new Vector3(0, 0, 0);
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
 
     }

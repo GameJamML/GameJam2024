@@ -6,12 +6,17 @@ public class EnemyGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] enemiesType;
+
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
+
     List<GameObject> pullEnemies = new List<GameObject>();
     List<GameObject> pullEnemiesDone = new List<GameObject>();
+
     private float lastGenerated = 0;
+
     [SerializeField] private float generationrate;
     [SerializeField] private int numberOfEachEnemy;
+
     private Vector3 startEnemies = new Vector3(0, 100, 0);
     void Start()
     {
