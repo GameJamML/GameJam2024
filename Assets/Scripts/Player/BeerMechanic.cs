@@ -7,6 +7,7 @@ public class BeerMechanic : MonoBehaviour
 {
 
     public bool beerPickedUp = false;
+    public bool beerDrinkable = false;
     bool beerEmpty = false;
 
     //Consume Related
@@ -36,19 +37,21 @@ public class BeerMechanic : MonoBehaviour
     {
         if(beerPickedUp) 
         {
-            
-            if(Input.GetKey(KeyCode.F))
+            if(beerDrinkable)
             {
-                if(!beerEmpty)
+                if (Input.GetKey(KeyCode.F))
                 {
-                    BeerHealingLogic();
+                    if (!beerEmpty)
+                    {
+                        BeerHealingLogic();
+                    }
                 }
-            }
-            else if(Input.GetKeyUp(KeyCode.F))
-            {
-                fadeOutUI.fadeOut = true;
-                fadeOutUI.fadeIn = false;
-            }
+                else if (Input.GetKeyUp(KeyCode.F))
+                {
+                    fadeOutUI.fadeOut = true;
+                    fadeOutUI.fadeIn = false;
+                }
+            } 
 
             if(Input.GetKeyDown(KeyCode.Space))
             {

@@ -6,12 +6,17 @@ public class EnemyGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] enemiesType;
+
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
+
     List<GameObject> pullEnemies = new List<GameObject>();
     List<GameObject> pullEnemiesDone = new List<GameObject>();
+
     private float lastGenerated = 0;
+
     [SerializeField] private float generationrate;
     [SerializeField] private int numberOfEachEnemy;
+
     private Vector3 startEnemies = new Vector3(0, 100, 0);
     void Start()
     {
@@ -83,24 +88,17 @@ public class EnemyGenerator : MonoBehaviour
 
     private void CreatePool()
     {
-        for (int i = 0; i < numberOfEachEnemy; i++)
+        for (int i = 0; i < enemiesType.Length; i++)
         {
-            GameObject newEnemy = Instantiate(enemiesType[0], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
+            for (int j = 0; j < numberOfEachEnemy; j++)
+            {
+                GameObject newEnemy = Instantiate(enemiesType[i], startEnemies, Quaternion.identity, transform);
+                newEnemy.SetActive(false);
+                pullEnemies.Add(newEnemy);
+            }
+
         }
-        for (int i = 0; i < numberOfEachEnemy; i++)
-        {
-            GameObject newEnemy = Instantiate(enemiesType[1], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
-        }
-        for (int i = 0; i < numberOfEachEnemy; i++)
-        {
-            GameObject newEnemy = Instantiate(enemiesType[2], startEnemies, Quaternion.identity, transform);
-            newEnemy.SetActive(false);
-            pullEnemies.Add(newEnemy);
-        }
+      
     }
 
     public void destroyEnemy(bool isDead, int enemy)
