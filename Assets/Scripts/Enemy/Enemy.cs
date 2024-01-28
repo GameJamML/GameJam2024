@@ -18,7 +18,7 @@ public class EnemyMovment : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
-        enemyGenerator = GameObject.Find("Spawner").GetComponent<EnemyGenerator>();
+        enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
     }
 
     // Update is called once per frame
