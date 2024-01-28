@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EnemyCatch : MonoBehaviour
 {
     private List<KeyCode> _catchKeyList = new();
-    private Image[] _keyImages;
+    [SerializeField]private Image[] _keyImages;
     private bool _startCatching;
     private int _catchIndex = 0;
     private int _difficult = 4;
@@ -17,15 +17,20 @@ public class EnemyCatch : MonoBehaviour
     private void Start()
     {
         _keyImages = GetComponentsInChildren<Image>();
+
+        foreach (var item in _keyImages)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //    StartToCatch();
-
         TryToCatch();
+
+        if (Input.GetKeyDown(KeyCode.P))
+            StartToCatch();
     }
 
     public void StartToCatch()
@@ -58,7 +63,7 @@ public class EnemyCatch : MonoBehaviour
         if (!_startCatching)
             return;
 
-        if (!Input.anyKeyDown)
+        if (!Input.anyKeyDown || Input.GetMouseButtonDown(0))
             return;
 
         // if press wrong key
@@ -67,7 +72,7 @@ public class EnemyCatch : MonoBehaviour
             _catchKeyList.Clear();
             _startCatching = false;
             // catch fail
-            endToCatch.Invoke(false);
+            //endToCatch.Invoke(false);
         }
         else
         {
@@ -79,7 +84,7 @@ public class EnemyCatch : MonoBehaviour
                 _startCatching = false;
                 _catchKeyList.Clear();
                 // catch succesful
-                endToCatch.Invoke(true);
+                //endToCatch.Invoke(true);
             }
         }
 
