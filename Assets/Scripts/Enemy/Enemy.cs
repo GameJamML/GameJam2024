@@ -12,12 +12,13 @@ public class EnemyMovment : MonoBehaviour
     private bool cached = false;
     public float rotationSpeed;
     private float initialspeed;
-    public Rigidbody rigidbody;
+    private EnemyGenerator enemyGenerator;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
+        enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
     }
 
     // Update is called once per frame
@@ -31,20 +32,26 @@ public class EnemyMovment : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+
+        if (collision.gameObject.CompareTag("Player"))
         {
-            EnemyDeadEvent();
+            if (EnemyDeadEvent != null)
+            {
+                EnemyDeadEvent();
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
+
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
+            //KillEnemy();
             Caught(true);
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
@@ -67,5 +74,10 @@ public class EnemyMovment : MonoBehaviour
         }
     }
 
-    
+    void KillEnemy()
+    {
+        gameObject.SetActive(false);
+        enemyGenerator.pullEnemies.Add(gameObject);
+    }
+
 }

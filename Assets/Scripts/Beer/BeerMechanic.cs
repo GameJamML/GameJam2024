@@ -20,7 +20,7 @@ public class BeerMechanic : MonoBehaviour
 
     //Beer Throw Related
 
-    [SerializeField] GameObject beerPrefab;
+    [SerializeField] GameObject beerThrownPrefab;
     Vector3 forwardDir = Vector3.zero;
 
     // Start is called before the first frame update
@@ -97,7 +97,7 @@ public class BeerMechanic : MonoBehaviour
 
         forwardDir = gameObject.transform.forward;
 
-        GameObject beer = Instantiate(beerPrefab, gameObject.transform.position + forwardDir, Quaternion.identity);
+        GameObject beer = Instantiate(beerThrownPrefab, gameObject.transform.position + forwardDir, Quaternion.identity);
         beer.GetComponent<BeerThrow>().GatherInfo(forwardDir);
 
         beerPickedUp = false;
