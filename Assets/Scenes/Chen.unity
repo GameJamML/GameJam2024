@@ -1675,31 +1675,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
-        type: 3}
-      propertyPath: _rotateSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
-        type: 3}
-      propertyPath: _acceleration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
-        type: 3}
-      propertyPath: _maxMoveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
-        type: 3}
-      propertyPath: _desacceleration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212438160713011523, guid: 5032c2469e121dd40bbfd292528255ae,
-        type: 3}
-      propertyPath: relativeTransform
-      value: 
-      objectReference: {fileID: 974044695}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
