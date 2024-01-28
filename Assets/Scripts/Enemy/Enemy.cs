@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -37,25 +35,17 @@ public class EnemyMovment : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.CompareTag("Player"))
         {
             if (EnemyDeadEvent != null)
-            {
                 EnemyDeadEvent();
-            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("enemy trigger");
-    }
     public void EnemyCatched()
     {
         cached = true;
         enemy.isStopped = true;
-        Debug.Log("catched");
     }
 
     public void EnemyEscaped()
@@ -70,6 +60,4 @@ public class EnemyMovment : MonoBehaviour
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
-
-
 }

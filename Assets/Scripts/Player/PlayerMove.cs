@@ -2,9 +2,7 @@
 
 public enum MoveVersion
 {
-    [Header("saddd")]
     Version1,
-    [Header("sad")]
     Version2
 }
 
@@ -14,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField, Range(0.5f, 50)] private float _maxMoveSpeed = 1;
     [SerializeField, Range(1, 50)] private float _rotateSpeed = 0.2f;
     [SerializeField, Range(1, 50)] private float _acceleration = 1;
-    [Header("Only for Movement version2"), SerializeField, Range(1, 50)] private float _desacceleration = 1;
+    [Header("Only for Movement version1"), SerializeField, Range(1, 50)] private float _desacceleration = 1;
 
     private float _speed = 0;
     private float _input_H, _input_V;
@@ -43,7 +41,7 @@ public class PlayerMove : MonoBehaviour
 
     private void MovementVersion1()
     {
-        // Move version 1
+        // Movement version 1
         _input_H = Input.GetAxisRaw("Horizontal");
         _input_V = Input.GetAxisRaw("Vertical");
 

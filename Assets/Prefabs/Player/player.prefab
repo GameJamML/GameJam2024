@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 3842054852753958346}
   - component: {fileID: 1272285938925865514}
   - component: {fileID: 3047781456613629152}
+  - component: {fileID: 9038449211979476058}
   m_Layer: 0
   m_Name: AttackRange
   m_TagString: PlayerAttack
@@ -855,6 +856,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9038449211979476058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791423385038213553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a803c27d1acfe408f439f6726c8329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3994144309744547368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,10 +2419,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fc8caf852f1644abe4ff8199d1a607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveVersion: 0
   _maxMoveSpeed: 5
+  _rotateSpeed: 25
   _acceleration: 5
   _desacceleration: 20
-  _rotateSpeed: 25
 --- !u!54 &7159650512555911426
 Rigidbody:
   m_ObjectHideFlags: 0
