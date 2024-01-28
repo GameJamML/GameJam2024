@@ -9,7 +9,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
 
-    List<GameObject> pullEnemies = new List<GameObject>();
+    [HideInInspector] public List<GameObject> pullEnemies = new List<GameObject>();
     List<GameObject> pullEnemiesDone = new List<GameObject>();
 
     private float lastGenerated = 0;
@@ -71,7 +71,7 @@ public class EnemyGenerator : MonoBehaviour
     private bool CheckInNaveMesh(Vector3 randPosition)
     {
          NavMeshHit hit;
-         if (NavMesh.SamplePosition(randPosition, out hit, 1.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
+         if (NavMesh.SamplePosition(randPosition, out hit, 4.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
          {
              return true;
          }
@@ -82,7 +82,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         posX = Random.Range(gameObject.transform.position.x - 10f, gameObject.transform.position.x + 10f);
         posZ = Random.Range(gameObject.transform.position.z - 10f, gameObject.transform.position.z + 10f);
-        Vector3 randomPos = new Vector3(posX, 0.6f, posZ);
+        Vector3 randomPos = new Vector3(posX, 3.79f, posZ);
         return randomPos;
     }
 

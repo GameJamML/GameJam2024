@@ -15,7 +15,11 @@ public class HealBaby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     ModifCharge(20);
+        // }
+
     }
 
     private void OnTriggerEnter(Collider other)
