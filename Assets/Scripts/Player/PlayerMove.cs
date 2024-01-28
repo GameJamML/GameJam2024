@@ -2,7 +2,7 @@
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField, Range(0.5f, 5)] private float _maxMoveSpeed = 1;
+    [SerializeField, Range(0.5f, 50)] private float _maxMoveSpeed = 1;
     [SerializeField, Range(1, 50)] private float _acceleration = 1;
     [SerializeField, Range(1, 50)] private float _desacceleration = 1;
     [SerializeField] private float _rotateSpeed = 0.2f;
