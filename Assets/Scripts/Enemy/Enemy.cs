@@ -12,7 +12,7 @@ public class EnemyMovment : MonoBehaviour
     private bool cached = false;
     public float rotationSpeed;
     private float initialspeed;
-    private EnemyGenerator enemyGenerator; 
+    private EnemyGenerator enemyGenerator;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,23 +32,26 @@ public class EnemyMovment : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-     
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            EnemyDeadEvent();
+            if (EnemyDeadEvent != null)
+            {
+                EnemyDeadEvent();
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        
+
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
             //KillEnemy();
             Caught(true);
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
