@@ -2,39 +2,49 @@
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private Transform relativeTransform;
-    [SerializeField] private float speed = 1f;
-    [SerializeField] private float rotateSpeed = 0.2f;
+    [SerializeField, Range(0.5f, 5)] private float _maxMoveSpeed = 1;
+    [SerializeField, Range(1, 50)] private float _acceleration = 1;
+    [SerializeField, Range(1, 50)] private float _desacceleration = 1;
+    [SerializeField] private float _rotateSpeed = 0.2f;
 
-    private float input_H, input_V;
-    private Animator playerAnim;
-    private Vector3 dir;
+
+    private float _speed = 0;
+    private float _input_H, _input_V;
+    private Animator _playerAnim;
+    private Vector3 _dir;
 
     private void Start()
     {
-        playerAnim = GetComponent<Animator>();
+        _playerAnim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        input_H = Input.GetAxisRaw("Horizontal");
-        input_V = Input.GetAxisRaw("Vertical");
+        _input_H = Input.GetAxisRaw("Horizontal");
+        _input_V = Input.GetAxisRaw("Vertical");
 
-        dir = new Vector3(input_H, 0, input_V);
+        _dir = new Vector3(_input_H, 0, _input_V);
 
-        if (dir != Vector3.zero)
+        if (_dir != Vector3.zero)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
-            //playerAnim.SetBool("isWalk", true);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_dir), _rotateSpeed * Time.deltaTime);
+
+            if (_speed < _maxMoveSpeed)
+                _speed += Time.deltaTime * _acceleration;
         }
         else
         {
-            //playerAnim.SetBool("isWalk", false);
+            if (_speed > 0)
+                _speed -= Time.deltaTime * _desacceleration;
+            else
+                _speed = 0;
         }
+
+        _playerAnim.SetFloat("MoveSpeed", _speed);
     }
 
     private void FixedUpdate()
     {
-        transform.Translate(speed * Time.deltaTime * dir, relativeTransform);
+        transform.Translate(_speed * Time.deltaTime * _dir, null);
     }
 }

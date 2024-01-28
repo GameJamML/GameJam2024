@@ -7,10 +7,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _mirrorTransform;
     [SerializeField] private GameObject _attackRange;
 
+    private Animator _anim;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            _anim.SetTrigger("Attack");
             StartAttack();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
