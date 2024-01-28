@@ -10,6 +10,7 @@ public class EnemyGenerator : MonoBehaviour
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
 
     [HideInInspector] public List<GameObject> pullEnemies = new List<GameObject>();
+    [HideInInspector] public bool stop;
     List<GameObject> pullEnemiesDone = new List<GameObject>();
 
     private float lastGenerated = 0;
@@ -21,6 +22,7 @@ public class EnemyGenerator : MonoBehaviour
     void Start()
     {
         CreatePool();
+        stop = false;
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class EnemyGenerator : MonoBehaviour
         float posZ = 0f;
         int enemySelected = enemyRandomizer(pullEnemies.Count);
         Vector3 randomPosition = setRandomPosition(posX, posZ);
-        if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false)
+        if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false && stop == false)
         {
             pullEnemies[enemySelected].transform.position = randomPosition;
             pullEnemies[enemySelected].SetActive(true);
