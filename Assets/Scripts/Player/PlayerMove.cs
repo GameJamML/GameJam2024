@@ -75,7 +75,7 @@ public class PlayerMove : MonoBehaviour
         _input_H = Input.GetAxisRaw("Horizontal");
         _input_V = Input.GetAxisRaw("Vertical");
 
-        _dir = new Vector3(_input_H, 0, _input_V);
+        _dir = new Vector3(_input_H, 0, _input_V).normalized;
 
         if (_dir != Vector3.zero)
         {

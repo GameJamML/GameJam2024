@@ -5,7 +5,8 @@ using UnityEngine.AI;
 public class EnemyMovment : MonoBehaviour
 {
     public NavMeshAgent enemy;
-    private GameObject player;
+    private GameObject baby;
+    
     public static Action EnemyDeadEvent;
     private bool cached = false;
     public float rotationSpeed;
@@ -15,22 +16,31 @@ public class EnemyMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Baby");
+        baby = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
         enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+            transform.Rotate(45f, 0, 0);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         if (cached == false)
         {
-            enemy.SetDestination(player.transform.position);
+            enemy.SetDestination(baby.transform.position);
         }
         else
         {
             //gameObject.transform.position = new Vector3(0, 0, 0);
+
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
         }
     }
 
@@ -60,4 +70,5 @@ public class EnemyMovment : MonoBehaviour
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
+
 }
