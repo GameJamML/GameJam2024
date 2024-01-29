@@ -14,13 +14,11 @@ public class EnemyGenerator : MonoBehaviour
     List<GameObject> pullEnemiesDone = new List<GameObject>();
 
     private float lastGenerated = 0;
-    
+
     [SerializeField] private float generationrate;
     [SerializeField] private float SpawnRangeX;
     [SerializeField] private float SpawnRangeZ;
     [SerializeField] private int numberOfEachEnemy;
-
-    private Vector3 startEnemies = new Vector3(0, 100, 0);
 
     private bool _sleep = false;
 
@@ -46,7 +44,7 @@ public class EnemyGenerator : MonoBehaviour
     }
 
     void Spawner()
-    {   
+    {
         float posX = 0f;
         float posZ = 0f;
         int enemySelected = EnemyRandomizer(pullEnemies.Count);
@@ -64,13 +62,13 @@ public class EnemyGenerator : MonoBehaviour
         pullEnemiesDone.Add(pullEnemies[enemySelected]);
         pullEnemies.Remove(pullEnemies[enemySelected]);
     }
-    
+
     private void SwapListKilledEnemy(int enemySelected)
     {
         pullEnemies.Add(pullEnemies[enemySelected]);
         pullEnemiesDone.Remove(pullEnemies[enemySelected]);
     }
-   
+
     private int EnemyRandomizer(int maxrange)
     {
         int randomEnemy;
@@ -102,7 +100,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             for (int j = 0; j < numberOfEachEnemy; j++)
             {
-                GameObject newEnemy = Instantiate(enemiesType[i], startEnemies, Quaternion.identity, transform);
+                GameObject newEnemy = Instantiate(enemiesType[i], Vector3.zero, Quaternion.identity, transform);
                 newEnemy.SetActive(false);
                 pullEnemies.Add(newEnemy);
             }
@@ -111,7 +109,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public void destroyEnemy(bool isDead, int enemy)
     {
-        pullEnemiesDone[enemy].transform.position = startEnemies;
+        pullEnemiesDone[enemy].transform.position = Vector3.zero;
         pullEnemiesDone[enemy].SetActive(false);
         SwapListKilledEnemy(enemy);
     }
@@ -121,7 +119,7 @@ public class EnemyGenerator : MonoBehaviour
         gameObject.BroadcastMessage("SleepEnemy");
         _sleep = true;
     }
-    
+
     public void AwakeAllEnemies()
     {
         gameObject.BroadcastMessage("AwakeEnemy");

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3252223541410806712}
   - component: {fileID: 3523186220436282690}
   - component: {fileID: 6267227934931706374}
+  - component: {fileID: 8846096672249470135}
   m_Layer: 0
   m_Name: TriggerDetector
   m_TagString: Untagged
@@ -82,6 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panicBar: {fileID: 0}
   chargeValue: 5
+--- !u!114 &8846096672249470135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625420911819140630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9053ce9226a33ff468160a895b062ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1299632580681841212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: be1f241c1e7c8634d8c6a8b11f1111ff,
         type: 3}
       propertyPath: m_Name
-      value: Llit 1
+      value: Llit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

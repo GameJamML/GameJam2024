@@ -1109,6 +1109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -1119,15 +1123,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.66957235
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.478
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8.64
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1199,6 +1203,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3378982860421484421}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 843811fd29b2e66418679163eecb2aa9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7120375516431234747}
   m_SourcePrefab: {fileID: 100100000, guid: 843811fd29b2e66418679163eecb2aa9, type: 3}
 --- !u!1 &1410589660740832722 stripped
 GameObject:
@@ -1309,6 +1317,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7120375516431234747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410589660740832722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b568d720ee9b944957686c1e72d271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beerPickedUp: 0
+  beerDrinkable: 0
+  consumeSlider: {fileID: 0}
+  beerThrownPrefab: {fileID: 5570394460321494724, guid: a4f42eecf3fd7974a9841d79704ef8c3,
+    type: 3}
 --- !u!4 &1410589660740866546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9,

@@ -7,7 +7,6 @@ public class BeerThrow : MonoBehaviour
 
     Vector3 lookDir = Vector3.zero;
     public float throwForce = 10.0f;
-    float rotationSpeed = 1.5f;
     public void GatherInfo(Vector3 dir)
     {
         lookDir = dir;
