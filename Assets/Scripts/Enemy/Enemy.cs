@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,12 +7,16 @@ public class EnemyMovment : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private GameObject baby;
-    
+
     public static Action EnemyDeadEvent;
     private bool cached = false;
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
+
+    // When has caught
+    private Transform _mirrorTrans;
+    private bool _finishedCaughtAnim = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,16 +36,16 @@ public class EnemyMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cached == false)
+        if (!cached)
         {
             enemy.SetDestination(baby.transform.position);
         }
         else
         {
-            //gameObject.transform.position = new Vector3(0, 0, 0);
-
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-
+            if (_finishedCaughtAnim)
+            {
+                transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -52,14 +57,43 @@ public class EnemyMovment : MonoBehaviour
         }
     }
 
-    public void EnemyCatched()
+    public IEnumerator CaughtAnim()
     {
+        Vector3 beginPos = transform.position;
+        Vector3 endPos = _mirrorTrans.position;
+
+        Quaternion beginRot = transform.rotation;
+        Quaternion endRot = Quaternion.LookRotation(Vector3.up, _mirrorTrans.up);
+
+        for (float t = 0; t < 1; t += Time.deltaTime * 2)
+        {
+            transform.rotation = Quaternion.Slerp(beginRot, endRot, t);
+            transform.position = Vector3.Lerp(beginPos, endPos, t);
+
+            yield return null;
+        }
+
+        _finishedCaughtAnim = true;
+    }
+
+    public void EnemyCatched(Transform mirrorTrans)
+    {
+        _finishedCaughtAnim = false;
+
+        _mirrorTrans = mirrorTrans;
+
         cached = true;
+        enemy.speed = 0;
         enemy.isStopped = true;
+        enemy.enabled = false;
+
+        // In coroutine
+        StartCoroutine(CaughtAnim());
     }
 
     public void EnemyEscaped()
     {
+        enemy.enabled = true;
         cached = false;
         enemy.isStopped = false;
         enemy.speed = initialspeed;

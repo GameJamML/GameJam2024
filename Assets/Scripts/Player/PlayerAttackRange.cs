@@ -12,7 +12,7 @@ public class PlayerAttackRange : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             _firstContactEnemy = other.gameObject;
-            _firstContactEnemy.SendMessage("EnemyCatched");
+            _firstContactEnemy.SendMessage("EnemyCatched", transform);
         }
     }
 
