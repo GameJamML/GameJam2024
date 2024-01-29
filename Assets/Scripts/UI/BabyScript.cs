@@ -5,6 +5,7 @@ using UnityEngine;
 public class BabyScript : MonoBehaviour
 {
     public ChargeBar panicBar;
+    [SerializeField] private float chargeValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class BabyScript : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyMovment>().KillEnemy();
-            panicBar.ModifCharge(2);
+            panicBar.ModifCharge(chargeValue);
 
         }
 

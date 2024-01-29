@@ -73,7 +73,7 @@ public class EnemyGenerator : MonoBehaviour
     private bool CheckInNaveMesh(Vector3 randPosition)
     {
          NavMeshHit hit;
-         if (NavMesh.SamplePosition(randPosition, out hit, 4.0f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
+         if (NavMesh.SamplePosition(randPosition, out hit, 0.6f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
          {
              return true;
          }
@@ -84,7 +84,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         posX = Random.Range(gameObject.transform.position.x - 10f, gameObject.transform.position.x + 10f);
         posZ = Random.Range(gameObject.transform.position.z - 10f, gameObject.transform.position.z + 10f);
-        Vector3 randomPos = new Vector3(posX, 3.79f, posZ);
+        Vector3 randomPos = new Vector3(posX, 0f, posZ);
         return randomPos;
     }
 
