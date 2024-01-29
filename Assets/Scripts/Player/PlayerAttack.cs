@@ -25,7 +25,6 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _isAttack = true;
-            StartAttack();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -52,9 +51,13 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator TakeAttack()
     {
+        Vector3 _beginPos = new (0, 0, 0.28f);
+        Vector3 _endPos = new (0, 0, 0.9f);
+
         for (float t = 0; t < 1; t += _attakDelaySpeed)
         {
             _attackTransform.localScale = Vector3.Lerp(Vector3.one * 0.3f, Vector3.one, t);
+            _attackTransform.localPosition = Vector3.Lerp(_beginPos, _endPos, t);
 
             yield return null;
         }
@@ -66,10 +69,13 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator AttackEnding()
     {
+        Vector3 _beginPos = new (0, 0, 0.9f);
+        Vector3 _endPos = new (0, 0, 0.28f);
+
         for (float t = 0; t < 1; t += _attakDelaySpeed)
         {
             _attackTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 0.3f, t);
-
+            _attackTransform.localPosition = Vector3.Lerp(_beginPos, _endPos, t);
             yield return null;
         }
 
