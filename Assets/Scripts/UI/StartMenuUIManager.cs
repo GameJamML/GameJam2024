@@ -11,6 +11,7 @@ public class StartMenuUIManager : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button creditsButton;
+    [SerializeField] private Button exitButton;
 
     [Header("Menu")]
     [SerializeField] private GameObject optionsMenu;
@@ -40,6 +41,7 @@ public class StartMenuUIManager : MonoBehaviour
                 startButton.interactable = true;
                 optionsButton.interactable = true;
                 creditsButton.interactable = true;
+                exitButton.interactable = true;
             }
         }
 
@@ -51,6 +53,7 @@ public class StartMenuUIManager : MonoBehaviour
                 startButton.interactable = true;
                 optionsButton.interactable = true;
                 creditsButton.interactable = true;
+                exitButton.interactable = true;
             }
         }
 
@@ -66,6 +69,7 @@ public class StartMenuUIManager : MonoBehaviour
         startButton.interactable = false; 
         optionsButton.interactable = false; 
         creditsButton.interactable = false;
+        exitButton.interactable = false;
 
         optionsMenu.SetActive(true);
     }
@@ -75,6 +79,7 @@ public class StartMenuUIManager : MonoBehaviour
         startButton.interactable = false;
         optionsButton.interactable = false;
         creditsButton.interactable = false;
+        exitButton.interactable = false;
 
         creditsMenu.SetActive(true);
     }
