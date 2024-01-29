@@ -7,6 +7,7 @@ public enum AudioType
     None,
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     // Singleton
@@ -43,6 +44,7 @@ public class AudioManager : MonoBehaviour
         }
 
         _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.loop = false;
     }
 
     public void PlayerSFX(AudioType type)
@@ -53,5 +55,19 @@ public class AudioManager : MonoBehaviour
     public void PlayerSFX(AudioClip clip)
     {
         _audioSource.PlayOneShot(clip);
+    }
+
+    public void MuteSFX()
+    {
+
+        _audioSource.volume = 0.0f;
+
+    }
+
+    public void UnMuteSFX()
+    {
+
+        _audioSource.volume = 1.0f;
+
     }
 }
