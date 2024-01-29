@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,12 +6,12 @@ public class EnemyMovment : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private GameObject player;
-    public delegate void OnEnemyDeath();
-    public static event OnEnemyDeath EnemyDeadEvent;
+    public static Action EnemyDeadEvent;
     private bool cached = false;
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,56 +27,37 @@ public class EnemyMovment : MonoBehaviour
         {
             enemy.SetDestination(player.transform.position);
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (EnemyDeadEvent != null)
-            {
-                EnemyDeadEvent();
-            }
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-
-        if (other.gameObject.CompareTag("PlayerAttack"))
-        {
-            //KillEnemy();
-            Caught(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("PlayerAttack"))
-        {
-            Caught(false);
-            enemy.speed = initialspeed;
-
-        }
-    }
-
-    void Caught(bool caught)
-    {
-        cached = caught;
-        enemy.isStopped = caught;
-
-        if (caught == true)
+        else
         {
             //gameObject.transform.position = new Vector3(0, 0, 0);
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
 
-    void KillEnemy()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            EnemyDeadEvent?.Invoke();
+        }
+    }
+
+    public void EnemyCatched()
+    {
+        cached = true;
+        enemy.isStopped = true;
+    }
+
+    public void EnemyEscaped()
+    {
+        cached = false;
+        enemy.isStopped = false;
+        enemy.speed = initialspeed;
+    }
+
+    public void KillEnemy()
     {
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
-
 }

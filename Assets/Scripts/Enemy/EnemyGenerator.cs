@@ -98,9 +98,7 @@ public class EnemyGenerator : MonoBehaviour
                 newEnemy.SetActive(false);
                 pullEnemies.Add(newEnemy);
             }
-
         }
-      
     }
 
     public void destroyEnemy(bool isDead, int enemy)
