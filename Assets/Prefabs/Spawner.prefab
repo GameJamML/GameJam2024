@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesType:
-  - {fileID: 8125273542029644716, guid: b7c9b4b2f9d26704cac0462c0c9279a9, type: 3}
-  - {fileID: 8997645523528064822, guid: 0f0d254edf16b414c9ff25a442a5e770, type: 3}
-  - {fileID: 4680878077762732852, guid: c89e1bf498c7f8c47ae425cb942ffcad, type: 3}
+  - {fileID: 1719626859950785927, guid: b7c9b4b2f9d26704cac0462c0c9279a9, type: 3}
+  - {fileID: 6103694877265819554, guid: 0f0d254edf16b414c9ff25a442a5e770, type: 3}
+  - {fileID: 4132368261551690957, guid: c89e1bf498c7f8c47ae425cb942ffcad, type: 3}
   naveMeshLayer: {fileID: 0}
   pullEnemies: []
   stop: 1
