@@ -103,7 +103,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _ColorStrength: 50
     - _ColorThickness: 3
-    - _ColorThreshold: 0.1
+    - _ColorThreshold: 0.15
     - _Cull: 2
     - _Cutoff: 0.5
     - _DepthStrength: 50
