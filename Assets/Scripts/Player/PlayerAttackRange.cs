@@ -3,6 +3,21 @@ using UnityEngine;
 public class PlayerAttackRange : MonoBehaviour
 {
     private GameObject _firstContactEnemy = null;
+    private EnemyCatch _enemyCatch;
+    private PlayerAttack _playerAttack;
+
+    private void Start()
+    {
+        _enemyCatch = FindAnyObjectByType<EnemyCatch>();
+        _enemyCatch.endToCatch += CatchEnd;
+
+        _playerAttack = GetComponentInParent<PlayerAttack>();
+    }
+
+    private void OnDestroy()
+    {
+        _enemyCatch.endToCatch -= CatchEnd;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,15 +28,17 @@ public class PlayerAttackRange : MonoBehaviour
         {
             _firstContactEnemy = other.gameObject;
             _firstContactEnemy.SendMessage("EnemyCatched", transform);
+            _enemyCatch.StartToCatch();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (_firstContactEnemy!= null && other.gameObject == _firstContactEnemy)
+        if (_firstContactEnemy != null && other.gameObject == _firstContactEnemy)
         {
             _firstContactEnemy.SendMessage("EnemyEscaped");
             _firstContactEnemy = null;
+            _enemyCatch.CatchFaild();
         }
     }
 
@@ -32,5 +49,24 @@ public class PlayerAttackRange : MonoBehaviour
             _firstContactEnemy.SendMessage("EnemyEscaped");
             _firstContactEnemy = null;
         }
+    }
+
+    private void CatchEnd(bool successful)
+    {
+        if (_firstContactEnemy == null)
+            return;
+
+        if (successful)
+        {
+            _firstContactEnemy.SendMessage("KillEnemy");
+        }
+        else
+        {
+            _firstContactEnemy.SendMessage("EnemyEscaped");
+        }
+
+        _firstContactEnemy = null;
+
+        _playerAttack.BreakAttack();
     }
 }

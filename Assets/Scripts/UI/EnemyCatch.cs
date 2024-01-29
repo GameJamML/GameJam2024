@@ -79,10 +79,7 @@ public class EnemyCatch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartToCatch();
-        else
-            TryToCatch();
+        TryToCatch();
     }
 
     public void StartToCatch()
@@ -161,14 +158,14 @@ public class EnemyCatch : MonoBehaviour
                 {
                     _keyToPressList[i].image.gameObject.SetActive(false);
                 }
+
                 // catch succesful
-                //endToCatch.Invoke(true);
+                endToCatch.Invoke(true);
             }
         }
-
     }
 
-    private void CatchFaild()
+    public void CatchFaild()
     {
         for (int i = 0; i < _difficult; i++)
         {
@@ -179,6 +176,6 @@ public class EnemyCatch : MonoBehaviour
         _catchIndex = -1;
 
         // catch fail
-        //endToCatch.Invoke(false);
+        endToCatch.Invoke(false);
     }
 }

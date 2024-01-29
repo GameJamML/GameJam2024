@@ -21,6 +21,9 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private int numberOfEachEnemy;
 
     private Vector3 startEnemies = new Vector3(0, 100, 0);
+
+    private bool _sleep = false;
+
     void Start()
     {
         CreatePool();
@@ -30,27 +33,29 @@ public class EnemyGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_sleep)
+            return;
+
         lastGenerated += Time.deltaTime;
+
         if (lastGenerated >= generationrate && pullEnemies.Count != 0)
         {
             Spawner();
             lastGenerated = 0f;
         }
-
     }
 
     void Spawner()
     {   
         float posX = 0f;
         float posZ = 0f;
-        int enemySelected = enemyRandomizer(pullEnemies.Count);
+        int enemySelected = EnemyRandomizer(pullEnemies.Count);
         Vector3 randomPosition = setRandomPosition(posX, posZ);
         if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false && stop == false)
         {
             pullEnemies[enemySelected].transform.position = randomPosition;
             pullEnemies[enemySelected].SetActive(true);
             SwapListCreatedEnemy(enemySelected);
-
         }
     }
 
@@ -65,7 +70,8 @@ public class EnemyGenerator : MonoBehaviour
         pullEnemies.Add(pullEnemies[enemySelected]);
         pullEnemiesDone.Remove(pullEnemies[enemySelected]);
     }
-    private int enemyRandomizer(int maxrange)
+   
+    private int EnemyRandomizer(int maxrange)
     {
         int randomEnemy;
         randomEnemy = Random.Range(0, maxrange);
@@ -113,10 +119,12 @@ public class EnemyGenerator : MonoBehaviour
     public void SleepAllEnemies()
     {
         gameObject.BroadcastMessage("SleepEnemy");
+        _sleep = true;
     }
     
     public void AwakeAllEnemies()
     {
-        gameObject.BroadcastMessage("AwakeEnemy");      
+        gameObject.BroadcastMessage("AwakeEnemy");
+        _sleep = false;
     }
 }

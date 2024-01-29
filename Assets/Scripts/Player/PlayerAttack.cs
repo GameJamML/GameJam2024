@@ -28,8 +28,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            _isAttack = false;
-            EndSAttack();
+            BreakAttack();
         }
 
         _anim.SetBool("Attack", _isAttack);
@@ -80,5 +79,11 @@ public class PlayerAttack : MonoBehaviour
         }
 
         _attackParticle.Stop();
+    }
+
+    public void BreakAttack()
+    {
+        _isAttack = false;
+        EndSAttack();
     }
 }

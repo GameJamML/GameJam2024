@@ -19,7 +19,6 @@ public class EnemyMovment : MonoBehaviour
     private Transform _mirrorTrans;
     private bool _finishedCaughtAnim = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         baby = GameObject.FindGameObjectWithTag("Baby");
@@ -27,27 +26,23 @@ public class EnemyMovment : MonoBehaviour
         enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
     }
 
+    void Update()
+    {
+        if ((!cached || !sleep) && enemy.enabled)
+        {
+            enemy.SetDestination(baby.transform.position);
+        }
+        else if (_finishedCaughtAnim)
+        {
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
             transform.Rotate(45f, 0, 0);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!cached || !sleep)
-        {
-            enemy.SetDestination(baby.transform.position);
-        }
-        else
-        {
-            if (_finishedCaughtAnim)
-            {
-                transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-            }
         }
     }
 
@@ -89,6 +84,8 @@ public class EnemyMovment : MonoBehaviour
         enemy.isStopped = true;
         enemy.enabled = false;
 
+        enemyGenerator.SleepAllEnemies();
+
         // In coroutine
         StartCoroutine(CaughtAnim());
     }
@@ -99,15 +96,27 @@ public class EnemyMovment : MonoBehaviour
         enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
+
+        enemyGenerator.AwakeAllEnemies();
     }
 
     public void KillEnemy()
     {
+        cached = false;
+        enemy.enabled = true;
+        enemy.isStopped = false;
+        enemy.speed = initialspeed;
+
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
+        enemyGenerator.AwakeAllEnemies();
     }
+
     public void SleepEnemy()
     {
+        if (!gameObject.activeSelf)
+            return;
+
         if (cached == false)
         {
             enemy.speed = 0;
@@ -115,12 +124,14 @@ public class EnemyMovment : MonoBehaviour
             sleep = true;
         }
     }
-    
+
     public void AwakeEnemy()
     {
+        if (!gameObject.activeSelf || !enemy.enabled)
+            return;
+
         enemy.speed = initialspeed;
         enemy.isStopped = false;
         sleep = false;
     }
-
 }
