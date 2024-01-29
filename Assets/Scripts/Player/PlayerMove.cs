@@ -19,13 +19,26 @@ public class PlayerMove : MonoBehaviour
     private Animator _playerAnim;
     private Vector3 _dir;
 
+    private PlayerAttack _playerAttack;
+
     private void Start()
     {
         _playerAnim = GetComponent<Animator>();
+        _playerAttack = GetComponent<PlayerAttack>();
     }
 
     void Update()
     {
+        if (_playerAttack.Attack)
+        {
+            if (_speed != 0)
+            {
+                _speed = 0;
+                _playerAnim.SetFloat("MoveSpeed", _speed);
+            }
+            return;
+        }
+
         switch (_moveVersion)
         {
             case MoveVersion.Version1:
@@ -37,6 +50,23 @@ public class PlayerMove : MonoBehaviour
         }
 
         _playerAnim.SetFloat("MoveSpeed", _speed);
+    }
+
+    private void FixedUpdate()
+    {
+        if (_playerAttack.Attack)
+            return;
+
+        switch (_moveVersion)
+        {
+            case MoveVersion.Version1:
+                transform.Translate(_speed * Time.deltaTime * _dir, null);
+                break;
+            case MoveVersion.Version2:
+                transform.Rotate(0, _input_H * _rotateSpeed, 0);
+                transform.Translate(0, 0, _input_V * _speed * Time.deltaTime);
+                break;
+        }
     }
 
     private void MovementVersion1()
@@ -77,20 +107,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             _speed = 0;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        switch (_moveVersion)
-        {
-            case MoveVersion.Version1:
-                transform.Translate(_speed * Time.deltaTime * _dir, null);
-                break;
-            case MoveVersion.Version2:
-                transform.Rotate(0, _input_H * _rotateSpeed, 0);
-                transform.Translate(0, 0, _input_V * _speed * Time.deltaTime);
-                break;
         }
     }
 }

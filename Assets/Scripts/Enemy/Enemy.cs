@@ -11,6 +11,7 @@ public class EnemyMovment : MonoBehaviour
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
