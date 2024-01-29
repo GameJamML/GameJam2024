@@ -92,7 +92,7 @@ public class EnemyMovment : MonoBehaviour
         enemyGenerator.AwakeAllEnemies();
     }
 
-    public void KillEnemy()
+    public void KillEnemy(bool killedByPlayer = true)
     {
         cached = false;
         enemy.enabled = true;
@@ -103,7 +103,9 @@ public class EnemyMovment : MonoBehaviour
 
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
-        enemyGenerator.AwakeAllEnemies();
+
+        if (killedByPlayer)
+            enemyGenerator.AwakeAllEnemies();
     }
 
     public void SleepEnemy()

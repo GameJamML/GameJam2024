@@ -26,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
         {
             _isAttack = true;
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             BreakAttack();
         }
@@ -41,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
         _attackRange.SetActive(true);
     }
 
-    private void EndSAttack()
+    private void EndAttack()
     {
         StopCoroutine(TakeAttack());
         StartCoroutine(AttackEnding());
@@ -84,6 +85,6 @@ public class PlayerAttack : MonoBehaviour
     public void BreakAttack()
     {
         _isAttack = false;
-        EndSAttack();
+        EndAttack();
     }
 }

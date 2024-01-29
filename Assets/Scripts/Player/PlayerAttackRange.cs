@@ -48,6 +48,7 @@ public class PlayerAttackRange : MonoBehaviour
         {
             _firstContactEnemy.SendMessage("EnemyEscaped");
             _firstContactEnemy = null;
+            _enemyCatch.CatchFaild();
         }
     }
 

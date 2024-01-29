@@ -48,7 +48,7 @@ public class EnemyGenerator : MonoBehaviour
         float posX = 0f;
         float posZ = 0f;
         int enemySelected = EnemyRandomizer(pullEnemies.Count);
-        Vector3 randomPosition = setRandomPosition(posX, posZ);
+        Vector3 randomPosition = SetRandomPosition(posX, posZ);
         if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false && stop == false)
         {
             pullEnemies[enemySelected].transform.position = randomPosition;
@@ -86,7 +86,7 @@ public class EnemyGenerator : MonoBehaviour
         return false;
     }
 
-    private Vector3 setRandomPosition(float posX, float posZ)
+    private Vector3 SetRandomPosition(float posX, float posZ)
     {
         posX = Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
         posZ = Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
@@ -107,7 +107,7 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    public void destroyEnemy(bool isDead, int enemy)
+    public void DestroyEnemy(bool isDead, int enemy)
     {
         pullEnemiesDone[enemy].transform.position = Vector3.zero;
         pullEnemiesDone[enemy].SetActive(false);

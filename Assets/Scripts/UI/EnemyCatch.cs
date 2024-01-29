@@ -105,6 +105,20 @@ public class EnemyCatch : MonoBehaviour
         }
     }
 
+    public void CatchFaild()
+    {
+        for (int i = 0; i < _difficult; i++)
+        {
+            _keyToPressList[i].image.gameObject.SetActive(false);
+        }
+
+        _startCatching = false;
+        _catchIndex = -1;
+
+        // catch fail
+        endToCatch?.Invoke(false);
+    }
+
     private IEnumerator StartToCatchAnim()
     {
         Vector2 beginPos = new(0, -30);
@@ -163,19 +177,5 @@ public class EnemyCatch : MonoBehaviour
                 endToCatch?.Invoke(true);
             }
         }
-    }
-
-    public void CatchFaild()
-    {
-        for (int i = 0; i < _difficult; i++)
-        {
-            _keyToPressList[i].image.gameObject.SetActive(false);
-        }
-
-        _startCatching = false;
-        _catchIndex = -1;
-
-        // catch fail
-        endToCatch?.Invoke(false);
     }
 }
