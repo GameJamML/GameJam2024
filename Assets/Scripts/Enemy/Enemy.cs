@@ -10,6 +10,7 @@ public class EnemyMovment : MonoBehaviour
 
     public static Action EnemyDeadEvent;
     private bool cached = false;
+    private bool sleep = false;
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
@@ -37,7 +38,7 @@ public class EnemyMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!cached)
+        if (!cached || !sleep)
         {
             enemy.SetDestination(baby.transform.position);
         }
@@ -105,4 +106,21 @@ public class EnemyMovment : MonoBehaviour
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
+    public void SleepEnemy()
+    {
+        if (cached == false)
+        {
+            enemy.speed = 0;
+            enemy.isStopped = true;
+            sleep = true;
+        }
+    }
+    
+    public void AwakeEnemy()
+    {
+        enemy.speed = initialspeed;
+        enemy.isStopped = false;
+        sleep = false;
+    }
+
 }

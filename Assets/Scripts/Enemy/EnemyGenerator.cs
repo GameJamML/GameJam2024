@@ -109,4 +109,14 @@ public class EnemyGenerator : MonoBehaviour
         pullEnemiesDone[enemy].SetActive(false);
         SwapListKilledEnemy(enemy);
     }
+
+    public void SleepAllEnemies()
+    {
+        gameObject.BroadcastMessage("SleepEnemy");
+    }
+    
+    public void AwakeAllEnemies()
+    {
+        gameObject.BroadcastMessage("AwakeEnemy");      
+    }
 }
