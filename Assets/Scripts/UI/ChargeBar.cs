@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChargeBar : MonoBehaviour
 {
@@ -28,11 +29,20 @@ public class ChargeBar : MonoBehaviour
 
     public void ModifCharge(float amount)
     {
-        if (actualCharge != 100)
+        if (actualCharge < maxCharge)
         {
             actualCharge += amount;
         }
+        else
+        {
+            EndGameCharge();
+        }
 
         return;
+    }
+    
+    public void EndGameCharge()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 }

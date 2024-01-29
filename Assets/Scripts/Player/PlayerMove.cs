@@ -60,11 +60,11 @@ public class PlayerMove : MonoBehaviour
         switch (_moveVersion)
         {
             case MoveVersion.Version1:
-                transform.Translate(_speed * Time.deltaTime * _dir, null);
+                transform.Translate(_speed * _playerAnim.GetFloat("MoveSpeedFromAnim") * Time.deltaTime * _dir, null);
                 break;
             case MoveVersion.Version2:
                 transform.Rotate(0, _input_H * _rotateSpeed, 0);
-                transform.Translate(0, 0, _input_V * _speed * Time.deltaTime);
+                transform.Translate(0, 0, _input_V * _speed * _playerAnim.GetFloat("MoveSpeedFromAnim") * Time.deltaTime);
                 break;
         }
     }
@@ -75,7 +75,7 @@ public class PlayerMove : MonoBehaviour
         _input_H = Input.GetAxisRaw("Horizontal");
         _input_V = Input.GetAxisRaw("Vertical");
 
-        _dir = new Vector3(_input_H, 0, _input_V);
+        _dir = new Vector3(_input_H, 0, _input_V).normalized;
 
         if (_dir != Vector3.zero)
         {
