@@ -56,4 +56,18 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(clip);
     }
+
+    public void MuteSFX()
+    {
+
+        _audioSource.volume = 0.0f;
+
+    }
+
+    public void UnMuteSFX()
+    {
+
+        _audioSource.volume = 1.0f;
+
+    }
 }
