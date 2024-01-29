@@ -20,7 +20,6 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private float SpawnRangeZ;
     [SerializeField] private int numberOfEachEnemy;
 
-    private Vector3 startEnemies = new Vector3(0, 100, 0);
     void Start()
     {
         CreatePool();
@@ -96,7 +95,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             for (int j = 0; j < numberOfEachEnemy; j++)
             {
-                GameObject newEnemy = Instantiate(enemiesType[i], startEnemies, Quaternion.identity, transform);
+                GameObject newEnemy = Instantiate(enemiesType[i], Vector3.zero, Quaternion.identity, transform);
                 newEnemy.SetActive(false);
                 pullEnemies.Add(newEnemy);
             }
@@ -105,7 +104,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public void destroyEnemy(bool isDead, int enemy)
     {
-        pullEnemiesDone[enemy].transform.position = startEnemies;
+        pullEnemiesDone[enemy].transform.position = Vector3.zero;
         pullEnemiesDone[enemy].SetActive(false);
         SwapListKilledEnemy(enemy);
     }
