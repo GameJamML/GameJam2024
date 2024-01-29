@@ -160,7 +160,7 @@ public class EnemyCatch : MonoBehaviour
                 }
 
                 // catch succesful
-                endToCatch.Invoke(true);
+                endToCatch?.Invoke(true);
             }
         }
     }
@@ -176,6 +176,6 @@ public class EnemyCatch : MonoBehaviour
         _catchIndex = -1;
 
         // catch fail
-        endToCatch.Invoke(false);
+        endToCatch?.Invoke(false);
     }
 }

@@ -46,14 +46,6 @@ public class EnemyMovment : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            EnemyDeadEvent?.Invoke();
-        }
-    }
-
     public IEnumerator CaughtAnim()
     {
         Vector3 beginPos = transform.position;
@@ -106,6 +98,8 @@ public class EnemyMovment : MonoBehaviour
         enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
+
+        EnemyDeadEvent?.Invoke();
 
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
