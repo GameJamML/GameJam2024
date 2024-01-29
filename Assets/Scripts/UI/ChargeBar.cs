@@ -7,7 +7,7 @@ public class ChargeBar : MonoBehaviour
 {
     public Image barraDeCarrega;
     private float maxCharge = 100;
-    [SerializeField]private float actualCharge;
+    private float actualCharge = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +18,7 @@ public class ChargeBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (Input.GetKeyDown(KeyCode.Space))
-       // {
-       //     ModifCharge(20);
-       // }
-
-        FillBar();
+       FillBar();
     }
 
     private void FillBar()
