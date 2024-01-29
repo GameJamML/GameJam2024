@@ -26,7 +26,5 @@ public class BabyScript : MonoBehaviour
             panicBar.ModifCharge(chargeValue);
 
         }
-
-
     }
 }

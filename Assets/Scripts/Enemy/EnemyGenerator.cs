@@ -14,8 +14,10 @@ public class EnemyGenerator : MonoBehaviour
     List<GameObject> pullEnemiesDone = new List<GameObject>();
 
     private float lastGenerated = 0;
-
+    
     [SerializeField] private float generationrate;
+    [SerializeField] private float SpawnRangeX;
+    [SerializeField] private float SpawnRangeZ;
     [SerializeField] private int numberOfEachEnemy;
 
     private Vector3 startEnemies = new Vector3(0, 100, 0);
@@ -82,8 +84,8 @@ public class EnemyGenerator : MonoBehaviour
 
     private Vector3 setRandomPosition(float posX, float posZ)
     {
-        posX = Random.Range(gameObject.transform.position.x - 10f, gameObject.transform.position.x + 10f);
-        posZ = Random.Range(gameObject.transform.position.z - 10f, gameObject.transform.position.z + 10f);
+        posX = Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
+        posZ = Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
         Vector3 randomPos = new Vector3(posX, 0f, posZ);
         return randomPos;
     }

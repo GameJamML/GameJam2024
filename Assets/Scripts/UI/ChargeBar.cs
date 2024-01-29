@@ -43,6 +43,6 @@ public class ChargeBar : MonoBehaviour
     
     public void EndGameCharge()
     {
-        //SceneManager.LoadScene("EndScene");
+        SceneManager.LoadScene("EndScene");
     }
 }
