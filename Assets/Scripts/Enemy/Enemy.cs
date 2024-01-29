@@ -33,6 +33,7 @@ public class EnemyMovment : MonoBehaviour
             transform.Rotate(45f, 0, 0);
         }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -65,7 +66,7 @@ public class EnemyMovment : MonoBehaviour
         Quaternion beginRot = transform.rotation;
         Quaternion endRot = Quaternion.LookRotation(Vector3.up, _mirrorTrans.up);
 
-        for (float t = 0; t < 1; t += Time.deltaTime * 2)
+        for (float t = 0; t < 1; t += Time.deltaTime * 2.5f)
         {
             transform.rotation = Quaternion.Slerp(beginRot, endRot, t);
             transform.position = Vector3.Lerp(beginPos, endPos, t);
@@ -93,8 +94,8 @@ public class EnemyMovment : MonoBehaviour
 
     public void EnemyEscaped()
     {
-        enemy.enabled = true;
         cached = false;
+        enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
     }
@@ -104,5 +105,4 @@ public class EnemyMovment : MonoBehaviour
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
-
 }
