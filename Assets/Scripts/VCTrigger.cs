@@ -10,11 +10,13 @@ public class VCTrigger : MonoBehaviour
     private void Start()
     {
         cam.LookAt = _Player.transform;
+        cam.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            cam.gameObject.SetActive(true);
             cam.Priority = 1;
         }
     }
@@ -23,6 +25,7 @@ public class VCTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cam.Priority = 0;
+            cam.gameObject.SetActive(false);
         }
     }
 }

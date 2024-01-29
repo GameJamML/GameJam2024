@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader_Testing_plane
+  m_Name: mat_door_way
   m_Shader: {fileID: -6465566751694194690, guid: ecbf9472af6df4a468740f6d8b3817cb,
     type: 3}
   m_Parent: {fileID: 0}
@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _Base_Color
+  m_LockedProperties: _Base_Color _SpecularColor
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main_Texture:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -127,8 +127,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Shadowstep: 0
-    - _Smoothness: -2.58
+    - _Shadowstep: 0.27
+    - _Smoothness: -9.14
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -144,7 +144,7 @@ Material:
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 0}
     - _ShadowColorPattern: {r: 1, g: 1, b: 1, a: 0}
     - _ShadowOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _ShadowTiling: {r: 2, g: 2, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecularColor: {r: 0.62692773, g: 0.645283, b: 0, a: 0}
   m_BuildTextureStacks: []
