@@ -8,8 +8,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _mirrorTransform;
     [SerializeField] private GameObject _attackRange;
     [SerializeField] private ParticleSystem _attackParticle;
+    public bool Attack { get => _isAttack; }
 
     private Animator _anim;
+    private bool _isAttack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +24,16 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _anim.SetTrigger("Attack");
+            _isAttack = true;
             StartAttack();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
+            _isAttack = false;
             EndSAttack();
         }
+
+        _anim.SetBool("Attack", _isAttack);
     }
 
     private void StartAttack()

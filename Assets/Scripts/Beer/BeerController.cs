@@ -68,10 +68,9 @@ public class BeerController : MonoBehaviour
 
     public void OnEnemyKilled()
     {
-        if (BeerPickUp.activeSelf) return;
+        if (BeerPickUp.activeSelf) 
+            return;
 
         currentCount++;
-
     }
-
 }

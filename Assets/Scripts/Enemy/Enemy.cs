@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,12 +6,12 @@ public class EnemyMovment : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private GameObject player;
-    public delegate void OnEnemyDeath();
-    public static event OnEnemyDeath EnemyDeadEvent;
+    public static Action EnemyDeadEvent;
     private bool cached = false;
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,25 +36,16 @@ public class EnemyMovment : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (EnemyDeadEvent != null)
-            {
-                EnemyDeadEvent();
-            }
+            EnemyDeadEvent?.Invoke();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("enemy trigger");
-    }
     public void EnemyCatched()
     {
         cached = true;
         enemy.isStopped = true;
-        Debug.Log("catched");
     }
 
     public void EnemyEscaped()
@@ -70,6 +60,4 @@ public class EnemyMovment : MonoBehaviour
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
     }
-
-
 }
