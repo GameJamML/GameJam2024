@@ -48,7 +48,7 @@ public class ShieldButton : MonoBehaviour
     
     private void StartButton()
     {
-        button_pCylinder2.transform.position = new Vector3(0, 0.1f, 0);
+        button_pCylinder2.transform.localPosition = new Vector3(0, 0.071f, 0);
         buttonLight.color = new Color(0, 1, 0);
         shieldGO.ActiveShield(true);
         shieldStopped = false;
