@@ -11,7 +11,7 @@ public class ShieldButton : MonoBehaviour
     private Light buttonLight;
     private Vector3 pCylinder2_initialPosition;
     private bool canStopped = false;
-    public bool shieldStopped = true;
+    [HideInInspector] public bool shieldStopped = true;
     void Start()
     {
         ShieldBarGO.SetActive(false);
