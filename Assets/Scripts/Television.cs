@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Television : MonoBehaviour
 {
     // Start is called before the first frame update
     public EnemyGenerator spawner;
-    public Renderer Color;
     private bool canStopped = false;
-    private bool Stopped = false;
+    private bool stopped = false;
+    public VideoPlayer teleVideo;
+
 
     private float normalTime = 0;
     [SerializeField] private float MaxTimer;
     void Start()
     {
-        //prova
-        Color.material.color = new Color(0, 1, 0);
+        //teleVideo.Stop();
     }
 
     // Update is called once per frame
@@ -24,10 +25,10 @@ public class Television : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && canStopped == true)
         {
             spawner.stop = true;
-            Color.material.color = new Color(1, 0, 0);//prova
-            Stopped = true;
+            teleVideo.Stop();
+            stopped = true;
         }
-        else if (Stopped == true)
+        else if (stopped == true)
         {
             StopTelevision();
         }
@@ -56,10 +57,10 @@ public class Television : MonoBehaviour
         normalTime += Time.deltaTime;
         if (normalTime >= MaxTimer)
         {
-            Stopped = false;
+            stopped = false;
             canStopped = false;
             spawner.stop = false;
-            Color.material.color = new Color(0, 1, 0);//prova
+            teleVideo.Play();
             normalTime = 0f;
         }
     }
