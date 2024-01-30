@@ -9,7 +9,7 @@ public class BabyScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyMovment>().KillEnemy(false);
+            other.gameObject.GetComponent<Enemy>().KillEnemy(false);
             panicBar.ModifCharge(chargeValue);
         }
     }

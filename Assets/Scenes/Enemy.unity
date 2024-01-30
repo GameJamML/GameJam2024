@@ -810,6 +810,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.52337
       objectReference: {fileID: 0}
+    - target: {fileID: 7120375516431234747, guid: 5032c2469e121dd40bbfd292528255ae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7495156109738369348, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1084,7 +1089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &639171484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,7 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
-  Color: {fileID: 639171487}
+  teleVideo: {fileID: 0}
   MaxTimer: 10
 --- !u!65 &639171486
 BoxCollider:

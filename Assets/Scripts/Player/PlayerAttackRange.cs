@@ -59,7 +59,7 @@ public class PlayerAttackRange : MonoBehaviour
 
         if (successful)
         {
-            _firstContactEnemy.SendMessage("KillEnemy");
+            _firstContactEnemy.SendMessage("KillEnemy", true);
         }
         else
         {

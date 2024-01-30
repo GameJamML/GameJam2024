@@ -34,7 +34,7 @@ public class Shield : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyMovment>().KillEnemy(false);
+            other.gameObject.GetComponent<Enemy>().KillEnemy(false);
             shieldBar.ModifCharge(-hpReducer);
         }
     }

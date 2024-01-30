@@ -58,12 +58,12 @@ public class BeerController : MonoBehaviour
     }
     private void OnEnable()
     {
-        EnemyMovment.EnemyDeadEvent += OnEnemyKilled;
+        Enemy.EnemyDeadEvent += OnEnemyKilled;
     }
 
     private void OnDisable()
     {
-        EnemyMovment.EnemyDeadEvent -= OnEnemyKilled;
+        Enemy.EnemyDeadEvent -= OnEnemyKilled;
     }
 
     public void OnEnemyKilled()
