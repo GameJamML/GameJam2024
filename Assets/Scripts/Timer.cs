@@ -24,8 +24,6 @@ public class Timer : MonoBehaviour
         currentTimePassed += Time.deltaTime;
         minutePassed += Time.deltaTime;
 
-        Debug.Log(SecToMin(currentTimePassed));
-
         if (minutePassed >= 60)
         {
             minutePassed = 0;
