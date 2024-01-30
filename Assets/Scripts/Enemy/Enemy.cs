@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovment : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private GameObject baby;
@@ -23,7 +23,24 @@ public class EnemyMovment : MonoBehaviour
     {
         baby = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
-        enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
+
+        if (enemyGenerator == null)
+            enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
+    }
+
+    private void OnEnable()
+    {
+        if (enemyGenerator == null)
+            enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
+
+        enemyGenerator.awakeEvent += AwakeEnemy;
+        enemyGenerator.sleepEvent += SleepEnemy;
+    }
+
+    private void OnDisable()
+    {
+        enemyGenerator.awakeEvent -= AwakeEnemy;
+        enemyGenerator.sleepEvent -= SleepEnemy;
     }
 
     void Update()

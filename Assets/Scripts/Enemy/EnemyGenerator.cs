@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private int numberOfEachEnemy;
 
     private bool _sleep = false;
+
+    [HideInInspector] public Action awakeEvent;
+    [HideInInspector] public Action sleepEvent; 
 
     void Start()
     {
@@ -72,24 +76,24 @@ public class EnemyGenerator : MonoBehaviour
     private int EnemyRandomizer(int maxrange)
     {
         int randomEnemy;
-        randomEnemy = Random.Range(0, maxrange);
+        randomEnemy = UnityEngine.Random.Range(0, maxrange);
         return randomEnemy;
     }
 
     private bool CheckInNaveMesh(Vector3 randPosition)
     {
-         NavMeshHit hit;
-         if (NavMesh.SamplePosition(randPosition, out hit, 0.6f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
-         {
-             return true;
-         }
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randPosition, out hit, 0.6f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
+        {
+            return true;
+        }
         return false;
     }
 
     private Vector3 SetRandomPosition(float posX, float posZ)
     {
-        posX = Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
-        posZ = Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
+        posX = UnityEngine.Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
+        posZ = UnityEngine.Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
         Vector3 randomPos = new Vector3(posX, 0f, posZ);
         return randomPos;
     }
@@ -114,15 +118,23 @@ public class EnemyGenerator : MonoBehaviour
         SwapListKilledEnemy(enemy);
     }
 
-    public void SleepAllEnemies()
+    public void SleepAllEnemies(bool fromAnotherGenrator = false)
     {
-        gameObject.BroadcastMessage("SleepEnemy");
+        sleepEvent?.Invoke();
+
+        if (!fromAnotherGenrator)
+            transform.parent.gameObject.BroadcastMessage("SleepAllEnemies", true);
+
         _sleep = true;
     }
 
-    public void AwakeAllEnemies()
+    public void AwakeAllEnemies(bool fromAnotherGenrator = false)
     {
-        gameObject.BroadcastMessage("AwakeEnemy");
+        awakeEvent?.Invoke();
+
+        if (!fromAnotherGenrator)
+            transform.parent.gameObject.BroadcastMessage("AwakeAllEnemies", true);
+
         _sleep = false;
     }
 }
