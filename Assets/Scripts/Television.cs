@@ -10,12 +10,16 @@ public class Television : MonoBehaviour
     private bool canStopped = false;
     private bool stopped = false;
     public VideoPlayer teleVideo;
+    private Light teleLight;
+    private float lightIntensity;
 
 
     private float normalTime = 0;
     [SerializeField] private float MaxTimer;
     void Start()
     {
+        teleLight = gameObject.GetComponentInChildren<Light>();
+        lightIntensity = teleLight.intensity;
         //teleVideo.Stop();
     }
 
@@ -26,6 +30,7 @@ public class Television : MonoBehaviour
         {
             spawner.stop = true;
             teleVideo.Stop();
+            teleLight.intensity = 0;
             stopped = true;
         }
         else if (stopped == true)
@@ -61,6 +66,7 @@ public class Television : MonoBehaviour
             canStopped = false;
             spawner.stop = false;
             teleVideo.Play();
+            teleLight.intensity = lightIntensity;
             normalTime = 0f;
         }
     }
