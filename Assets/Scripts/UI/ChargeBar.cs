@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class ChargeBar : MonoBehaviour
 {
     public Image barraDeCarrega;
-    private float maxCharge = 100;
-    private float actualCharge = 0;
+    [SerializeField] private float maxCharge = 100;
+    public float actualCharge = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class ChargeBar : MonoBehaviour
 
     public void ModifCharge(float amount)
     {
-        if (actualCharge < maxCharge)
+        if (actualCharge <= maxCharge)
         {
             actualCharge += amount;
         }
@@ -44,5 +44,10 @@ public class ChargeBar : MonoBehaviour
     public void EndGameCharge()
     {
         SceneManager.LoadScene("EndScene");
+    }
+    
+    public float ActualHP()
+    {
+        return actualCharge;
     }
 }
