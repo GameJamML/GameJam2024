@@ -4,6 +4,9 @@ using UnityEngine;
 public enum AudioType
 {
     Test = 0,
+    Correctkey,
+    TryAgain,
+    Attack,
     None,
 }
 
