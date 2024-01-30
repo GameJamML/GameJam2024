@@ -25,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _isAttack = true;
+            AudioManager.Instace.PlayerSFX(AudioType.Attack);
+
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
