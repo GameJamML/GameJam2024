@@ -1774,21 +1774,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8691428476373672454, guid: de574bb42a9eb1149aa93eef944de26c,
-        type: 3}
-      propertyPath: _audioList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8691428476373672454, guid: de574bb42a9eb1149aa93eef944de26c,
-        type: 3}
-      propertyPath: _audioList.Array.data[3].key
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8691428476373672454, guid: de574bb42a9eb1149aa93eef944de26c,
-        type: 3}
-      propertyPath: _audioList.Array.data[3].value
-      value: 
-      objectReference: {fileID: 8300000, guid: 46209674f06c5524ca2a1a85eb7d0f38, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

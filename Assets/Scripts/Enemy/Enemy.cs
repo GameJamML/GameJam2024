@@ -129,13 +129,16 @@ public class Enemy : MonoBehaviour
         enemy.isStopped = false;
         enemy.speed = initialspeed;
 
-        EnemyDeadEvent?.Invoke();
+
 
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
 
         if (killedByPlayer)
+        {
+            EnemyDeadEvent?.Invoke();
             enemyGenerator.AwakeAllEnemies();
+        }
     }
 
     public void SleepEnemy()

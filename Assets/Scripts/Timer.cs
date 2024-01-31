@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour
         currentTimePassed += Time.deltaTime;
         minutePassed += Time.deltaTime;
 
-        if (minutePassed >= 10)
+        if (minutePassed >= 60)
         {
             minutePassed = 0;
             MinutePassed?.Invoke();
