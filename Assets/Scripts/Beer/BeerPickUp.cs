@@ -17,10 +17,7 @@ public class BeerPickUp : MonoBehaviour
                 bm.beerPickedUp = true;
 
                 gameObject.SetActive(false);
-            }
-            else
-            {
-
+                AudioManager.Instace.PlayerSFX(AudioType.Correctkey);
             }
         }
     }

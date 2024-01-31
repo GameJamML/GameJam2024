@@ -527,6 +527,37 @@ Transform:
   - {fileID: 2951584169396556408}
   m_Father: {fileID: 8323610393186120963}
   m_LocalEulerAnglesHint: {x: 14.916012, y: 0.115725026, z: 2.1294718}
+--- !u!1 &3668407896298756383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9178592586592817433}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9178592586592817433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668407896298756383}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.534, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1410589660740866546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3791423385038213553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1415,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3996124208060303695}
+    - targetCorrespondingSourceObject: {fileID: 400004, guid: 843811fd29b2e66418679163eecb2aa9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9178592586592817433}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 843811fd29b2e66418679163eecb2aa9,
         type: 3}
