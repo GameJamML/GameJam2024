@@ -26,7 +26,7 @@ public class Television : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && canStopped == true)
+        if (Input.GetKeyDown(KeyCode.F) && canStopped == true)
         {
             spawner.stop = true;
             teleVideo.Stop();

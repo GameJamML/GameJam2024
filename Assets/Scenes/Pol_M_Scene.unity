@@ -27310,43 +27310,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.113
+      value: -0.113000005
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.31
+      value: 1.041
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.183
+      value: -13.281
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.80250317
+      value: 0.9893491
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.59664786
+      value: 0.14556222
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
@@ -27361,7 +27346,7 @@ PrefabInstance:
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -73.26
+      value: 16.74
       objectReference: {fileID: 0}
     - target: {fileID: 2390932102188472770, guid: 495aa9f1dc49b9242907348e7a0f5f05,
         type: 3}
@@ -27377,11 +27362,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Nena
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055020239880569720, guid: 495aa9f1dc49b9242907348e7a0f5f05,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28686,7 +28666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 2127744819}
   teleVideo: {fileID: 913214151}
-  MaxTimer: 5
+  MaxTimer: 20
 --- !u!65 &1894908144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28706,8 +28686,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6980168, y: 0.52, z: 0.4163382}
-  m_Center: {x: -0.004653613, y: -0.10999998, z: 0.003973683}
+  m_Size: {x: 0.6980168, y: 0.74, z: 0.4163382}
+  m_Center: {x: -0.004653613, y: -0.10999998, z: 0.15}
 --- !u!4 &1894908145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 430059c502a0fc9418f3cbdad290623c,
