@@ -15,11 +15,12 @@ public class BeerMechanic : MonoBehaviour
     float maxTimeToConsume = 5.0f;
     [SerializeField]Slider consumeSlider;
     FadeInFadeOutUI fadeOutUI;
-    float healingPerSecond = 7.5f;
-    float totalHealing = 0.0f;
+
+    //Heal
+    float healingPerSecond = -4.5f;
+    [SerializeField] ChargeBar panicBar;
 
     //Beer Throw Related
-
     [SerializeField] GameObject beerThrownPrefab;
     Vector3 forwardDir = Vector3.zero;
 
@@ -86,10 +87,7 @@ public class BeerMechanic : MonoBehaviour
 
     void HealPlayer(float healperFrame)
     {
-        
-        Debug.Log("Player Healed" + healperFrame + "hp");
-        Debug.Log("Player Healed" + totalHealing + "hp");
-        totalHealing += healperFrame;
+        panicBar.ModifCharge(healperFrame);
     }
 
     void BeerThrowingLogic()

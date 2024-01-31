@@ -18,4 +18,12 @@ public class BeerThrow : MonoBehaviour
         transform.Translate(lookDir * throwForce * Time.deltaTime,Space.World);
         transform.RotateAround(transform.position, Vector3.right, 720 * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
