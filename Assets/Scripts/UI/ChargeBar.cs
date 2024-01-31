@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ChargeBar : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ChargeBar : MonoBehaviour
     [SerializeField] private float actualCharge = 0;
 
     public float ActualHP { get => actualCharge; set => actualCharge = value; }
+
+    public Action<float> _hpChangeEvent;
 
     private void Start()
     {
@@ -24,7 +27,10 @@ public class ChargeBar : MonoBehaviour
     public void ModifCharge(float amount)
     {
         if (actualCharge <= maxCharge)
+        {
             actualCharge += amount;
+            _hpChangeEvent?.Invoke(ActualHP);
+        }
         else
             EndGameCharge();
 
