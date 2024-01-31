@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour
     public ChargeBar shieldBar;
     public ShieldButton shieldButton;
     [SerializeField] private float hpReducer;
-    
+    [HideInInspector] public bool shieldActive;
     void Start()
     {
         
@@ -23,19 +23,33 @@ public class Shield : MonoBehaviour
             ActiveShield(false);
             shieldButton.ResetButton();
             shieldBar.actualCharge = 100;
+            shieldActive = false;
         }
         else if (shieldButton.shieldStopped == false)
         {
             ActiveShield(true);
+            shieldActive = true;
         }
     }
 
-
-    private void OnCollisionStay(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
-            shieldBar.ModifCharge(-hpReducer);
+            other.gameObject.GetComponent<Enemy>().AtackEnemy();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.gameObject.GetComponent<Enemy>().atack == true)
+            {
+
+                shieldBar.ModifCharge(-hpReducer);
+                other.gameObject.GetComponent<Enemy>().atack = false;
+            }
         }
     }
 

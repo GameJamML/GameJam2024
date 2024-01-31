@@ -185,6 +185,11 @@ public class Enemy : MonoBehaviour
         startAtack = true;
     }
 
+    public void stopEnemy()
+    {
+
+    }
+
     private void resetAtack()
     {
         startAtack = false;

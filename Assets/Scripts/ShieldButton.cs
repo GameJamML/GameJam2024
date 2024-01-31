@@ -29,7 +29,7 @@ public class ShieldButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canStopped == true)
+        if (Input.GetKeyDown(KeyCode.F) && canStopped == true && button_pCylinder2.transform.position == pCylinder2_initialPosition)
         {
             StartButton();
         }
@@ -41,7 +41,7 @@ public class ShieldButton : MonoBehaviour
             if (timer >= cooldownButton)
             {
                 shieldStopped = true;
-                canStopped = true;
+                canStopped = false;
                 button_pCylinder2.transform.position = pCylinder2_initialPosition;
                 buttonLight.color = new Color(1, 0, 0);
                 timer = 0f;
@@ -52,9 +52,9 @@ public class ShieldButton : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && canStopped == false)
         {
             canStopped = true;
         }

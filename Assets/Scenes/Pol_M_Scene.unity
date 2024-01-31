@@ -4428,6 +4428,7 @@ MonoBehaviour:
   shieldBar: {fileID: 287794880}
   shieldButton: {fileID: 2082466596}
   hpReducer: 20
+  shieldActive: 0
 --- !u!1 &253372174
 GameObject:
   m_ObjectHideFlags: 0
@@ -21814,6 +21815,11 @@ PrefabInstance:
       propertyPath: ShieldBarGO
       value: 
       objectReference: {fileID: 834379680}
+    - target: {fileID: 3135434451593455718, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: cooldownButton
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4188174895742020134, guid: de82c594667c0a3489e8e988ea6c3374,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32410,6 +32416,11 @@ PrefabInstance:
       propertyPath: healText
       value: 
       objectReference: {fileID: 830683104}
+    - target: {fileID: 6267227934931706374, guid: cd1ccac51cabe4c40860e6e114e0ab2f,
+        type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 251537023}
     - target: {fileID: 6267227934931706374, guid: cd1ccac51cabe4c40860e6e114e0ab2f,
         type: 3}
       propertyPath: panicBar

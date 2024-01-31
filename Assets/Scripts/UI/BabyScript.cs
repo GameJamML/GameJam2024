@@ -5,6 +5,8 @@ public class BabyScript : MonoBehaviour
     public ChargeBar panicBar;
     [SerializeField] private float chargeValue;
     [SerializeField] private float enemyCooldown;
+    public Shield shield;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,10 +21,11 @@ public class BabyScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && shield.shieldActive == false)
         {
             if (other.gameObject.GetComponent<Enemy>().atack == true)
             {
+                
                 panicBar.ModifCharge(chargeValue);
                 other.gameObject.GetComponent<Enemy>().atack = false;
             }
