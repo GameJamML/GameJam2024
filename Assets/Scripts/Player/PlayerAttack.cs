@@ -8,6 +8,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _mirrorTransform;
     [SerializeField] private GameObject _attackRange;
     [SerializeField] private ParticleSystem _attackParticle;
+
+
+    [SerializeField] private EnemyDetector _enemyDetector;
     public bool Attack { get => _isAttack; }
 
     private Animator _anim;
@@ -25,7 +28,15 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _isAttack = true;
+
+            //Aim assistance
+            if (_enemyDetector._targetInstanceID != -1)
+            { 
+                transform.LookAt(_enemyDetector._target);
+                transform.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
+            }
         }
+
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
