@@ -68,7 +68,10 @@ public class EnemyCatch : MonoBehaviour
     private List<KeyToPress> _keyToPressList = new();
 
     [SerializeField, Header("Only for read")] private bool _startCatching = false;
-    [SerializeField, Header("Only for read")] private int _catchIndex = 1;
+
+    [SerializeField, Range(5, 20), Space] private float _maxCoolDown = 6.0f;
+    private float _coolDown = 0;
+
     private int _difficult = 5;
 
     public Action<bool> endToCatch;
@@ -77,10 +80,24 @@ public class EnemyCatch : MonoBehaviour
 
     [SerializeField] private PanelManager _panelManager;
 
+    [SerializeField] private Slider _coolDownSlider;
+
+    [SerializeField] private CanvasGroup _canvasGroup;
+
+    [SerializeField, Header("Only for read")] private int _catchIndex = 1;
+
+    private float _smallKeyScale = 0.6f;
+
     private void Start()
     {
         if (_panelManager == null)
             _panelManager = FindAnyObjectByType<PanelManager>();
+
+        if (_coolDownSlider == null)
+            _coolDownSlider = GetComponentInParent<Slider>();
+
+        if (_canvasGroup == null)
+            _canvasGroup = GetComponentInParent<CanvasGroup>();
 
         _myRecTransform = GetComponent<RectTransform>();
         Image[] _keyImages = GetComponentsInChildren<Image>();
@@ -88,6 +105,8 @@ public class EnemyCatch : MonoBehaviour
         foreach (var img in _keyImages)
         {
             img.gameObject.SetActive(false);
+
+            img.rectTransform.localScale = Vector3.one * _smallKeyScale;
 
             KeyToPress kp = new(img);
 
@@ -136,6 +155,11 @@ public class EnemyCatch : MonoBehaviour
                 _keyToPressList[i].image.gameObject.SetActive(true);
             }
 
+            _keyToPressList[0].image.rectTransform.localScale = Vector3.one;
+
+            _coolDown = _maxCoolDown;
+            _coolDownSlider.value = 1;
+
             _panelManager.ChangeColor(Color.black);
 
             StartCoroutine(StartToCatchAnim());
@@ -144,7 +168,11 @@ public class EnemyCatch : MonoBehaviour
 
     public void CatchFaild()
     {
-        for (int i = 0; i < _difficult; i++)
+        AudioManager.Instace.PlayerSFX(AudioType.TryAgain);
+
+        _keyToPressList[_catchIndex].image.rectTransform.localScale = Vector3.one * _smallKeyScale;
+
+        for (int i = _catchIndex; i < _difficult; i++)
         {
             _keyToPressList[i].image.gameObject.SetActive(false);
         }
@@ -154,12 +182,15 @@ public class EnemyCatch : MonoBehaviour
 
         _panelManager.ChangeColor(new Color(0, 0, 0, 0));
 
+        StartCoroutine(EndToCatchAnim());
+
         // catch fail
         endToCatch?.Invoke(false);
     }
 
     private IEnumerator StartToCatchAnim()
     {
+        /*
         Vector2 beginPos = new(0, -30);
         Vector2 endPos = new(0, 0);
 
@@ -179,14 +210,45 @@ public class EnemyCatch : MonoBehaviour
 
             yield return null;
         }
+        */
+
+        for (float t = 0; t < 1; t += Time.deltaTime * 2)
+        {
+            _canvasGroup.alpha = t;
+
+            yield return null;
+        }
+
+        _canvasGroup.alpha = 1;
 
         _startCatching = true;
+    }
+
+    private IEnumerator EndToCatchAnim()
+    {
+        for (float t = 1; t > 0; t -= Time.deltaTime * 2)
+        {
+            _canvasGroup.alpha = t;
+
+            yield return null;
+        }
+
+        _canvasGroup.alpha = 0;
     }
 
     private void TryToCatch()
     {
         if (!_startCatching)
             return;
+
+        _coolDown -= Time.deltaTime;
+        _coolDownSlider.value = _coolDown / _maxCoolDown;
+
+        if (_coolDown <= 0)
+        {
+            CatchFaild();
+            return;
+        }
 
         if (!Input.anyKeyDown || Input.GetMouseButtonDown(0))
             return;
@@ -195,19 +257,20 @@ public class EnemyCatch : MonoBehaviour
         if (!Input.GetKeyDown(_keyToPressList[_catchIndex].key) && !Input.GetKeyDown(_keyToPressList[_catchIndex].alternativeKey))
         {
             CatchFaild();
-            AudioManager.Instace.PlayerSFX(AudioType.TryAgain);
         }
         else
         {
             if (_keyToPressList[_catchIndex].GetHit())
             {
+                _keyToPressList[_catchIndex].image.rectTransform.localScale = Vector3.one * _smallKeyScale;
                 _keyToPressList[_catchIndex++].image.gameObject.SetActive(false);
+                _keyToPressList[_catchIndex].image.rectTransform.localScale = Vector3.one;
             }
 
             // Audio
             switch (_keyToPressList[_catchIndex].key)
             {
-                case KeyCode.LeftAlt:
+                case KeyCode.LeftArrow:
                     AudioManager.Instace.PlayerSFX(AudioType.Correctkey, 0.5f);
                     break;
                 case KeyCode.DownArrow:
@@ -219,7 +282,7 @@ public class EnemyCatch : MonoBehaviour
                 case KeyCode.UpArrow:
                     AudioManager.Instace.PlayerSFX(AudioType.Correctkey, 2f);
                     break;
-            }            
+            }
 
             // when finishd catch
             if (_catchIndex >= _difficult)
@@ -234,6 +297,8 @@ public class EnemyCatch : MonoBehaviour
                 }
 
                 _panelManager.ChangeColor(new Color(0, 0, 0, 0));
+
+                StartCoroutine(EndToCatchAnim());
 
                 // catch succesful
                 endToCatch?.Invoke(true);
