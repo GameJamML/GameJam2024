@@ -8,6 +8,8 @@ TagManager:
   - Baby
   - Enemy
   - EnemyCatchUI
+  - Wall
+  - Biberon
   layers:
   - Default
   - TransparentFX
