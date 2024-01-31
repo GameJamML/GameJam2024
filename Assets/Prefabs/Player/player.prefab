@@ -1578,6 +1578,7 @@ MonoBehaviour:
   beerPickedUp: 0
   beerDrinkable: 0
   consumeSlider: {fileID: 0}
+  panicBar: {fileID: 0}
   beerThrownPrefab: {fileID: 9000170640835840283, guid: cb369590f1d1fec469a9bc848fb6f332,
     type: 3}
 --- !u!114 &5752885611952665839
