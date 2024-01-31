@@ -29,12 +29,18 @@ public class PlayerAttack : MonoBehaviour
         {
             _isAttack = true;
 
-            //Aim assistance
+            _enemyDetector._active = false;
+            
+            AudioManager.Instace.PlayerSFX(AudioType.Attack);
+        }
+
+        //Aim assistance
+        if (Input.GetKey(KeyCode.Space))
+        {
             if (_enemyDetector._targetInstanceID != -1)
-            { 
+            {
                 transform.LookAt(_enemyDetector._target);
                 transform.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
-                AudioManager.Instace.PlayerSFX(AudioType.Attack);
             }
         }
 
@@ -42,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             BreakAttack();
+            _enemyDetector._active = true;
         }
 
         _anim.SetBool("Attack", _isAttack);

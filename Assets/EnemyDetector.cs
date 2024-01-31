@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
+    [HideInInspector] public bool _active = true;
     [SerializeField] private float maxAimAngle = 40.0f;
 
 
@@ -22,8 +23,22 @@ public class EnemyDetector : MonoBehaviour
         _parentTransform = gameObject.GetComponentInParent<Transform>();
     }
 
+
+    private void Update()
+    {
+        if (_target != null && !_target.gameObject.activeSelf)
+        {
+            Debug.Log("OFF");
+            _targetInstanceID = -1;
+            _target = null;
+            _targetAngle = 360.0f;
+            _targetDistanceToPlayer = float.PositiveInfinity;
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
+        if (!_active) return;
         if (other.CompareTag("Enemy"))
         {
             int id = other.GetInstanceID();
