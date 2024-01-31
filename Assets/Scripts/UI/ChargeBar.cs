@@ -7,9 +7,14 @@ public class ChargeBar : MonoBehaviour
     public Image barraDeCarrega;
     [SerializeField] private float maxCharge = 100;
 
-    private float actualCharge = 0;
+    [SerializeField] private float actualCharge = 0;
 
     public float ActualHP { get => actualCharge; set => actualCharge = value; }
+
+    private void Start()
+    {
+        FillBar();
+    }
 
     private void FillBar()
     {
