@@ -7,6 +7,7 @@ public enum AudioType
     Correctkey,
     TryAgain,
     Attack,
+    Clock,
     None,
 }
 
