@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private GameObject baby;
 
     public static Action EnemyDeadEvent;
-    private bool cached = false;
+    private bool caught = false;
     private bool sleep = false;
     public float rotationSpeed;
     private float initialspeed;
@@ -22,14 +22,13 @@ public class Enemy : MonoBehaviour
     private bool startAtack = false;
     private float timer = 0;
     [SerializeField] private float cooldownAtack;
-    
+
     private Action _hitToBaby;
     private Func<bool> _hitToShield;
 
     public bool Atack { get { if (sleep) return false; else return atack; } set => atack = value; }
     void Start()
     {
-
         animator = GetComponent<Animator>();
         baby = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
@@ -37,8 +36,8 @@ public class Enemy : MonoBehaviour
         if (enemyGenerator == null)
             enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
 
-         cached = false;
-}
+        caught = false;
+    }
 
     private void OnEnable()
     {
@@ -57,7 +56,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if ((!cached || !sleep) && enemy.enabled)
+        if (!gameObject.activeSelf)
+            return;
+
+        if ((!caught || !sleep) && enemy.enabled)
         {
             enemy.SetDestination(baby.transform.position);
         }
@@ -66,7 +68,7 @@ public class Enemy : MonoBehaviour
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
 
-        if (startAtack == true && sleep == false)
+        if (startAtack && !sleep && !caught)
         {
             timer += Time.deltaTime;
 
@@ -74,28 +76,22 @@ public class Enemy : MonoBehaviour
             {
                 if (_hitToShield != null)
                 {
-                    if (_hitToShield.Invoke() == false)
-                    {
+                    if (!_hitToShield.Invoke())
                         _hitToShield = null;
-                    }
                 }
                 else
+                {
                     _hitToBaby?.Invoke();
-
-                
-
+                }
                 timer = 0f;
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
-        {
             transform.Rotate(45f, 0, 0);
-        }
 
         if (other.gameObject.CompareTag("Biberon"))
         {
@@ -116,8 +112,7 @@ public class Enemy : MonoBehaviour
 
         for (float t = 0; t < 1; t += Time.deltaTime * 2.5f)
         {
-            transform.rotation = Quaternion.Slerp(beginRot, endRot, t);
-            transform.position = Vector3.Lerp(beginPos, endPos, t);
+            transform.SetPositionAndRotation(Vector3.Lerp(beginPos, endPos, t), Quaternion.Slerp(beginRot, endRot, t));
 
             yield return null;
         }
@@ -132,7 +127,7 @@ public class Enemy : MonoBehaviour
 
         _mirrorTrans = mirrorTrans;
 
-        cached = true;
+        caught = true;
         enemy.speed = 0;
         enemy.isStopped = true;
         enemy.enabled = false;
@@ -141,13 +136,12 @@ public class Enemy : MonoBehaviour
 
         // In coroutine
         StartCoroutine(CaughtAnim());
-        Debug.Log("DAWSDWADSDWAD");
     }
 
     public void EnemyEscaped()
     {
         animator.SetBool("Suction", false);
-        cached = false;
+        caught = false;
         enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
@@ -158,12 +152,12 @@ public class Enemy : MonoBehaviour
     public void KillEnemy(bool killedByPlayer = true)
     {
         animator.SetBool("Suction", false);
-        cached = false;
+        caught = false;
         enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
         startAtack = false;
-        resetAtack();
+        ResetAtack();
 
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
@@ -180,13 +174,12 @@ public class Enemy : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
 
-        if (cached == false)
+        if (caught == false)
         {
             enemy.speed = 0;
             enemy.isStopped = true;
             sleep = true;
         }
-        
     }
 
     public void AwakeEnemy()
@@ -204,22 +197,20 @@ public class Enemy : MonoBehaviour
         if (_hitToBaby == null)
         {
             _hitToBaby = hitToBaby;
-            
-        }
-        startAtack = true;
-    }
-    
-    public void AtackEnemyShield(Func<bool> hitToShield)
-    { 
-        if (_hitToShield == null)
-        {
-            _hitToShield = hitToShield;
-            
         }
         startAtack = true;
     }
 
-    private void resetAtack()
+    public void AtackEnemyShield(Func<bool> hitToShield)
+    {
+        if (_hitToShield == null)
+        {
+            _hitToShield = hitToShield;
+        }
+        startAtack = true;
+    }
+
+    private void ResetAtack()
     {
         startAtack = false;
         atack = false;

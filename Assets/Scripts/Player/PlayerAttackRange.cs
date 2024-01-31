@@ -9,9 +9,7 @@ public class PlayerAttackRange : MonoBehaviour
     private void Start()
     {
         if (_enemyCatch == null)
-        {
             _enemyCatch = FindAnyObjectByType<EnemyCatch>();
-        }
 
         _enemyCatch.endToCatch += CatchEnd;
         _playerAttack = GetComponentInParent<PlayerAttack>();

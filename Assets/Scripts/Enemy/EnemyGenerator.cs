@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,9 +9,9 @@ public class EnemyGenerator : MonoBehaviour
 
     public Unity.AI.Navigation.NavMeshSurface naveMeshLayer;
 
-    [HideInInspector] public List<GameObject> pullEnemies = new List<GameObject>();
+    [HideInInspector] public List<GameObject> pullEnemies = new();
     [HideInInspector] public bool stop;
-    List<GameObject> pullEnemiesDone = new List<GameObject>();
+    List<GameObject> pullEnemiesDone = new();
 
     private float lastGenerated = 0;
 
@@ -32,7 +31,6 @@ public class EnemyGenerator : MonoBehaviour
         stop = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_sleep)
@@ -49,10 +47,8 @@ public class EnemyGenerator : MonoBehaviour
 
     void Spawner()
     {
-        float posX = 0f;
-        float posZ = 0f;
         int enemySelected = EnemyRandomizer(pullEnemies.Count);
-        Vector3 randomPosition = SetRandomPosition(posX, posZ);
+        Vector3 randomPosition = SetRandomPosition();
         if (CheckInNaveMesh(randomPosition) == true && pullEnemies[enemySelected].activeSelf == false && stop == false)
         {
             pullEnemies[enemySelected].transform.position = randomPosition;
@@ -67,12 +63,6 @@ public class EnemyGenerator : MonoBehaviour
         pullEnemies.Remove(pullEnemies[enemySelected]);
     }
 
-    private void SwapListKilledEnemy(int enemySelected)
-    {
-        pullEnemies.Add(pullEnemies[enemySelected]);
-        pullEnemiesDone.Remove(pullEnemies[enemySelected]);
-    }
-
     private int EnemyRandomizer(int maxrange)
     {
         int randomEnemy;
@@ -82,19 +72,14 @@ public class EnemyGenerator : MonoBehaviour
 
     private bool CheckInNaveMesh(Vector3 randPosition)
     {
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randPosition, out hit, 0.6f, NavMesh.GetAreaFromName("NavMesh_Terrain")))
-        {
-            return true;
-        }
-        return false;
+        return NavMesh.SamplePosition(randPosition, out _, 0.6f, NavMesh.GetAreaFromName("NavMesh_Terrain"));
     }
 
-    private Vector3 SetRandomPosition(float posX, float posZ)
+    private Vector3 SetRandomPosition()
     {
-        posX = UnityEngine.Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
-        posZ = UnityEngine.Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
-        Vector3 randomPos = new Vector3(posX, 0f, posZ);
+        float posX = UnityEngine.Random.Range(gameObject.transform.position.x - SpawnRangeX, gameObject.transform.position.x + SpawnRangeX);
+        float posZ = UnityEngine.Random.Range(gameObject.transform.position.z - SpawnRangeZ, gameObject.transform.position.z + SpawnRangeZ);
+        Vector3 randomPos = new (posX, 0f, posZ);
         return randomPos;
     }
 
@@ -109,13 +94,6 @@ public class EnemyGenerator : MonoBehaviour
                 pullEnemies.Add(newEnemy);
             }
         }
-    }
-
-    public void DestroyEnemy(bool isDead, int enemy)
-    {
-        pullEnemiesDone[enemy].transform.position = Vector3.zero;
-        pullEnemiesDone[enemy].SetActive(false);
-        SwapListKilledEnemy(enemy);
     }
 
     public void SleepAllEnemies(bool fromAnotherGenrator = false)

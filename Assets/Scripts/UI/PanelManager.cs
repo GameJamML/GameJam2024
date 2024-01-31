@@ -11,7 +11,7 @@ public class PanelManager : MonoBehaviour
 
     private Color _destinationColor;
 
-    private bool _flashing = false;
+    //private bool _flashing = false;
 
     private void Start()
     {
@@ -27,10 +27,10 @@ public class PanelManager : MonoBehaviour
         StartCoroutine(ChangeColorAnim());
     }
 
-    private IEnumerator FlashinAnim()
-    {
-        yield return null;
-    }
+    //private IEnumerator FlashinAnim()
+    //{
+    //    yield return null;
+    //}
 
     private IEnumerator ChangeColorAnim()
     {

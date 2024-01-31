@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
@@ -11,24 +8,9 @@ public class Shield : MonoBehaviour
     [SerializeField] private float hpReducer;
     [HideInInspector] public bool shieldActive;
 
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
-        if (shieldBar.ActualHP() <= 0)
-        {
-            ActiveShield(false);
-            shieldButton.ResetButton();
-            shieldBar.actualCharge = 100;
-            shieldActive = false;
-        }
-        else if (shieldButton.shieldStopped == false)
+        if (shieldButton.shieldStopped == false)
         {
             ActiveShield(true);
             shieldActive = true;
@@ -51,7 +33,6 @@ public class Shield : MonoBehaviour
         }
         else
         {
-
             gameObject.SetActive(false);
         }
     }
@@ -60,12 +41,15 @@ public class Shield : MonoBehaviour
     {
         shieldBar.ModifCharge(-hpReducer);
         
-        if (shieldBar.ActualHP() <= 0)
+        if (shieldBar.ActualHP <= 0)
         {
+            ActiveShield(false);
+            shieldButton.ResetButton();
+            shieldBar.ActualHP = 100;
+            shieldActive = false;
+
             return false;
         }
-
         return true;
-    
     }
 }

@@ -7,16 +7,12 @@ public class BabyScript : MonoBehaviour
     [SerializeField] private float enemyCooldown;
     public Shield shield;
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Enemy>().AtackEnemy(GetHit);
-            //panicBar.ModifCharge(chargeValue);
         }
-        
-  
     }
 
     public void GetHit()

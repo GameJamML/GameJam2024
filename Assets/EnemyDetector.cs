@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
@@ -22,7 +20,6 @@ public class EnemyDetector : MonoBehaviour
     {
         _parentTransform = gameObject.GetComponentInParent<Transform>();
     }
-
 
     private void Update()
     {

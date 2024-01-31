@@ -29,9 +29,9 @@ public class ChildNeeds : MonoBehaviour
             if(currentNeedTimer > maxCurrentNeedTime)
             {
                 currentNeedTimer = 0.0f;
+
                 panicBar.ModifCharge(2.5f);
             }
-
         }
         else
         {
@@ -41,10 +41,8 @@ public class ChildNeeds : MonoBehaviour
 
     private void OnEnable()
     {
-
         Timer.MinutePassed += HealthNeedsOnGirl;
         Pills.OnPillsPickedUp += SetPillsPickedUp;
-
     }
 
     private void OnDisable()
@@ -72,7 +70,6 @@ public class ChildNeeds : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
             if(PillsPickedUp)
             {
                 imageNeeds.gameObject.SetActive(false);
@@ -80,7 +77,6 @@ public class ChildNeeds : MonoBehaviour
                 PillsPickedUp = false;
                 OnChildSick?.Invoke(false);
             }
-
         }
     }
 }
