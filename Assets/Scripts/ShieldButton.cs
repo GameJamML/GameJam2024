@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShieldButton : MonoBehaviour
@@ -16,6 +17,7 @@ public class ShieldButton : MonoBehaviour
     private float timer = 0;
 
     [SerializeField] private float cooldownButton;
+    [SerializeField] private TextMeshProUGUI _canInteractText;
 
     private bool resetButton = false;
 
@@ -52,12 +54,32 @@ public class ShieldButton : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _canInteractText.gameObject.SetActive(true);
+        }
+
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && canStopped == false)
         {
             canStopped = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _canInteractText.gameObject.SetActive(false);
+        }
+
     }
 
 
@@ -76,6 +98,7 @@ public class ShieldButton : MonoBehaviour
         shieldStopped = false;
         canStopped = false;
         ShieldBarGO.SetActive(true);
+        _canInteractText.gameObject.SetActive(false);
     }
 
 }

@@ -5770,7 +5770,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press E to read
+  m_text: 'Press E to Interact
+
 
 '
   m_isRightToLeft: 0
@@ -12650,11 +12651,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2645126560884710109, guid: b6f3b28468d0f82469761c4c64b3c982,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1004076076}
+      addedObject: {fileID: 1004076075}
     - targetCorrespondingSourceObject: {fileID: 2645126560884710109, guid: b6f3b28468d0f82469761c4c64b3c982,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1004076075}
+      addedObject: {fileID: 1004076080}
   m_SourcePrefab: {fileID: 100100000, guid: b6f3b28468d0f82469761c4c64b3c982, type: 3}
 --- !u!1001 &706705551
 PrefabInstance:
@@ -17644,8 +17645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81ae78ee0e87a640a3a321db8bf70f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1004076076
-BoxCollider:
+  _canInteractText: {fileID: 309339546}
+--- !u!135 &1004076080
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -17663,8 +17665,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1898872, y: 1.29714, z: 1.3427596}
-  m_Center: {x: 0.5023215, y: -0.06341356, z: -0.31498057}
+  m_Radius: 1.5194308
+  m_Center: {x: 1.1525198, y: 0, z: -0.06335555}
 --- !u!1001 &1005280494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22107,6 +22109,11 @@ PrefabInstance:
       propertyPath: ShieldBarGO
       value: 
       objectReference: {fileID: 834379680}
+    - target: {fileID: 3135434451593455718, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: _canInteractText
+      value: 
+      objectReference: {fileID: 309339546}
     - target: {fileID: 4188174895742020134, guid: de82c594667c0a3489e8e988ea6c3374,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22161,6 +22168,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462727338404621210, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5241575
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462727338404621210, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 8.09238e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462727338404621210, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.53207886
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462727338404621210, guid: de82c594667c0a3489e8e988ea6c3374,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.0226067e-15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
