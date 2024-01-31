@@ -18,7 +18,11 @@ public class Enemy : MonoBehaviour
     // When has caught
     private Transform _mirrorTrans;
     private bool _finishedCaughtAnim = false;
-
+    [HideInInspector] public bool atack = false;
+    private bool startAtack = false;
+    private float timer = 0;
+    [SerializeField] private float cooldownAtack;
+    
     void Start()
     {
 
@@ -55,6 +59,18 @@ public class Enemy : MonoBehaviour
         {
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
+
+        if (startAtack == true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= cooldownAtack)
+            {
+                atack = true;
+                timer = 0f;
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -128,8 +144,8 @@ public class Enemy : MonoBehaviour
         enemy.enabled = true;
         enemy.isStopped = false;
         enemy.speed = initialspeed;
-
-
+        startAtack = false;
+        resetAtack();
 
         gameObject.SetActive(false);
         enemyGenerator.pullEnemies.Add(gameObject);
@@ -163,4 +179,17 @@ public class Enemy : MonoBehaviour
         enemy.isStopped = false;
         sleep = false;
     }
+
+    public void AtackEnemy()
+    {
+        startAtack = true;
+    }
+
+    private void resetAtack()
+    {
+        startAtack = false;
+        atack = false;
+        timer = 0f;
+    }
+
 }

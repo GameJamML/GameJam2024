@@ -1061,6 +1061,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 3660257559795420772}
   rotationSpeed: 200
+  atack: 0
+  cooldownAtack: 3
 --- !u!195 &3660257559795420772
 NavMeshAgent:
   m_ObjectHideFlags: 0

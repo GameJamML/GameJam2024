@@ -30,11 +30,11 @@ public class Shield : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().KillEnemy(false);
             shieldBar.ModifCharge(-hpReducer);
         }
     }

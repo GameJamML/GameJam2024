@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2420126417440430032}
   rotationSpeed: 200
+  atack: 0
+  cooldownAtack: 3
 --- !u!54 &7162462283114634004
 Rigidbody:
   m_ObjectHideFlags: 0
