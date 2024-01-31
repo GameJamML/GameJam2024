@@ -156,10 +156,12 @@ public class EnemyCatch : MonoBehaviour
         if (!Input.GetKeyDown(_keyToPressList[_catchIndex].key) && !Input.GetKeyDown(_keyToPressList[_catchIndex].alternativeKey))
         {
             CatchFaild();
+            AudioManager.Instace.PlayerSFX(AudioType.TryAgain);
         }
         else
         {
             _keyToPressList[_catchIndex++].image.gameObject.SetActive(false);
+            AudioManager.Instace.PlayerSFX(AudioType.Correctkey);
 
             // when finishd catch
             if (_catchIndex >= _difficult)

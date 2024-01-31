@@ -14,13 +14,15 @@ public class Enemy : MonoBehaviour
     public float rotationSpeed;
     private float initialspeed;
     private EnemyGenerator enemyGenerator;
-
+    private Animator animator;
     // When has caught
     private Transform _mirrorTrans;
     private bool _finishedCaughtAnim = false;
 
     void Start()
     {
+
+        animator = GetComponent<Animator>();
         baby = GameObject.FindGameObjectWithTag("Baby");
         initialspeed = enemy.speed;
 
@@ -84,6 +86,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyCatched(Transform mirrorTrans)
     {
+        animator.SetBool("Suction", true);
         _finishedCaughtAnim = false;
 
         _mirrorTrans = mirrorTrans;
@@ -101,6 +104,7 @@ public class Enemy : MonoBehaviour
 
     public void EnemyEscaped()
     {
+        animator.SetBool("Suction", false);
         cached = false;
         enemy.enabled = true;
         enemy.isStopped = false;
@@ -111,6 +115,7 @@ public class Enemy : MonoBehaviour
 
     public void KillEnemy(bool killedByPlayer = true)
     {
+        animator.SetBool("Suction", false);
         cached = false;
         enemy.enabled = true;
         enemy.isStopped = false;
