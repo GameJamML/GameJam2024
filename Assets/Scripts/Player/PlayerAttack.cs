@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
             { 
                 transform.LookAt(_enemyDetector._target);
                 transform.eulerAngles = new Vector3(0.0f, transform.rotation.eulerAngles.y, 0.0f);
+                AudioManager.Instace.PlayerSFX(AudioType.Attack);
             }
         }
 
