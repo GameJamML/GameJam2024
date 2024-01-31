@@ -12,6 +12,13 @@ public class ShieldButton : MonoBehaviour
     private Vector3 pCylinder2_initialPosition;
     private bool canStopped = false;
     [HideInInspector] public bool shieldStopped = true;
+
+    private float timer = 0;
+
+    [SerializeField] private float cooldownButton;
+
+    private bool resetButton = false;
+
     void Start()
     {
         ShieldBarGO.SetActive(false);
@@ -22,10 +29,27 @@ public class ShieldButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && canStopped == true)
+        if (Input.GetKeyDown(KeyCode.F) && canStopped == true)
         {
             StartButton();
         }
+
+        if (resetButton == true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= cooldownButton)
+            {
+                shieldStopped = true;
+                canStopped = true;
+                button_pCylinder2.transform.position = pCylinder2_initialPosition;
+                buttonLight.color = new Color(1, 0, 0);
+                timer = 0f;
+                resetButton = false; 
+            }
+
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,11 +63,9 @@ public class ShieldButton : MonoBehaviour
 
     public void ResetButton()
     {
-        shieldStopped = true;
-        canStopped = true;
+        resetButton = true;
         ShieldBarGO.SetActive(false);
-        button_pCylinder2.transform.position = pCylinder2_initialPosition;
-        buttonLight.color = new Color(1, 0, 0);
+
     }
     
     private void StartButton()
