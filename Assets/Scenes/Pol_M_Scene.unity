@@ -2056,7 +2056,7 @@ PrefabInstance:
     - target: {fileID: 1410589660740866546, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.221479
+      value: 13.42
       objectReference: {fileID: 0}
     - target: {fileID: 1410589660740866546, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
@@ -3885,6 +3885,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemic1
       objectReference: {fileID: 0}
+    - target: {fileID: 1719626859950785927, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2059982486496485181, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4911,22 +4916,22 @@ PrefabInstance:
     - target: {fileID: 1745090924088071457, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.48818532
+      value: 0.68973106
       objectReference: {fileID: 0}
     - target: {fileID: 1745090924088071457, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09178514
+      value: 0.012792293
       objectReference: {fileID: 0}
     - target: {fileID: 1745090924088071457, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8529556
+      value: 0.72382814
       objectReference: {fileID: 0}
     - target: {fileID: 1745090924088071457, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16036667
+      value: -0.013424686
       objectReference: {fileID: 0}
     - target: {fileID: 1910701499702406418, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
@@ -4987,22 +4992,22 @@ PrefabInstance:
     - target: {fileID: 2557443946915821203, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.48818532
+      value: 0.68973106
       objectReference: {fileID: 0}
     - target: {fileID: 2557443946915821203, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09178514
+      value: 0.012792293
       objectReference: {fileID: 0}
     - target: {fileID: 2557443946915821203, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8529556
+      value: 0.72382814
       objectReference: {fileID: 0}
     - target: {fileID: 2557443946915821203, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16036667
+      value: -0.013424686
       objectReference: {fileID: 0}
     - target: {fileID: 2753038041827507385, guid: f41daf91f3802524f98678e65bcbd1b9,
         type: 3}
@@ -19746,7 +19751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1186589230
 Transform:
   m_ObjectHideFlags: 0
@@ -21818,7 +21823,7 @@ PrefabInstance:
     - target: {fileID: 3135434451593455718, guid: de82c594667c0a3489e8e988ea6c3374,
         type: 3}
       propertyPath: cooldownButton
-      value: 25
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4188174895742020134, guid: de82c594667c0a3489e8e988ea6c3374,
         type: 3}

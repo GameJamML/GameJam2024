@@ -46,7 +46,6 @@ public class Shield : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Enemy>().atack == true)
             {
-
                 shieldBar.ModifCharge(-hpReducer);
                 other.gameObject.GetComponent<Enemy>().atack = false;
             }
