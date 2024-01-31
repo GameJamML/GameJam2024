@@ -1,9 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BeerDrinkable : MonoBehaviour
 {
+
+    [SerializeField] TextMeshProUGUI healText;
+    bool biberonPickedUp = false;
+    bool drinkable = false;
+
+    private void Update()
+    {
+        if (healText != null) 
+        {
+            if(!biberonPickedUp && !drinkable) 
+            {
+                healText.text = "";
+            }
+            else if(biberonPickedUp && drinkable)
+            {
+                healText.text = "Hold F for Calm Baby with the baby bottle\r\n";
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -13,7 +34,8 @@ public class BeerDrinkable : MonoBehaviour
             if (bm != null)
             {
                 bm.beerDrinkable = true;
-
+                biberonPickedUp = bm.beerPickedUp;
+                drinkable = true;
             }
             else
             {
@@ -31,7 +53,8 @@ public class BeerDrinkable : MonoBehaviour
             if (bm != null)
             {
                 bm.beerDrinkable = false;
-
+                biberonPickedUp = bm.beerPickedUp;
+                drinkable = false;
             }
             else
             {

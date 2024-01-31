@@ -14618,7 +14618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press R for Calm Baby
+  m_text: 'Hold F for Calm Baby with the baby bottle
 
 '
   m_isRightToLeft: 0
@@ -32347,6 +32347,11 @@ PrefabInstance:
       propertyPath: panicBar
       value: 
       objectReference: {fileID: 2067849322}
+    - target: {fileID: 8846096672249470135, guid: cd1ccac51cabe4c40860e6e114e0ab2f,
+        type: 3}
+      propertyPath: healText
+      value: 
+      objectReference: {fileID: 830683105}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

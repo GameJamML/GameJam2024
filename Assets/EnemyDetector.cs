@@ -28,7 +28,6 @@ public class EnemyDetector : MonoBehaviour
     {
         if (_target != null && !_target.gameObject.activeSelf)
         {
-            Debug.Log("OFF");
             _targetInstanceID = -1;
             _target = null;
             _targetAngle = 360.0f;
