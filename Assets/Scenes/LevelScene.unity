@@ -17191,6 +17191,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pills
       objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.4318943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.606773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.9067069
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.12671185
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.80338645
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034096000376802820, guid: d1a23d331f3359243afbc6f95743017f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.45335346
+      objectReference: {fileID: 0}
     - target: {fileID: 5402861574431286617, guid: d1a23d331f3359243afbc6f95743017f,
         type: 3}
       propertyPath: m_Range

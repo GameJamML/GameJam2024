@@ -47,7 +47,7 @@ public class BeerMechanic : MonoBehaviour
                 }
             } 
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetMouseButtonDown(0))
             {
                 BeerThrowingLogic();
             }

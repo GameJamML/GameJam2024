@@ -29,7 +29,7 @@ public class ShieldButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canStopped == true && button_pCylinder2.transform.position == pCylinder2_initialPosition)
+        if (Input.GetKeyDown(KeyCode.E) && canStopped == true && button_pCylinder2.transform.position == pCylinder2_initialPosition)
         {
             StartButton();
         }
