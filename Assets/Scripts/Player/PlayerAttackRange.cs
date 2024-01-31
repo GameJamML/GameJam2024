@@ -3,14 +3,17 @@ using UnityEngine;
 public class PlayerAttackRange : MonoBehaviour
 {
     private GameObject _firstContactEnemy = null;
-    private EnemyCatch _enemyCatch;
+    [SerializeField] private EnemyCatch _enemyCatch;
     private PlayerAttack _playerAttack;
 
     private void Start()
     {
-        _enemyCatch = FindAnyObjectByType<EnemyCatch>();
-        _enemyCatch.endToCatch += CatchEnd;
+        if (_enemyCatch == null)
+        {
+            _enemyCatch = FindAnyObjectByType<EnemyCatch>();
+        }
 
+        _enemyCatch.endToCatch += CatchEnd;
         _playerAttack = GetComponentInParent<PlayerAttack>();
     }
 
@@ -58,13 +61,9 @@ public class PlayerAttackRange : MonoBehaviour
             return;
 
         if (successful)
-        {
             _firstContactEnemy.SendMessage("KillEnemy", true);
-        }
         else
-        {
             _firstContactEnemy.SendMessage("EnemyEscaped");
-        }
 
         _firstContactEnemy = null;
 

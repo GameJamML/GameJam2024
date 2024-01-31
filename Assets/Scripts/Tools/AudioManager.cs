@@ -50,9 +50,14 @@ public class AudioManager : MonoBehaviour
         _audioSource.loop = false;
     }
 
-    public void PlayerSFX(AudioType type)
+    public void PlayerSFX(AudioType type, float pitch = 1f)
     {
-        _audioSource.PlayOneShot(_audioDictionary[type]);
+        if (pitch < 0)
+            _audioSource.pitch = Random.Range(0.2f, 1.0f);
+        else
+            _audioSource.pitch = pitch;
+
+       _audioSource.PlayOneShot(_audioDictionary[type]);
     }
 
     public void PlayerSFX(AudioClip clip)

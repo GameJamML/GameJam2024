@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a803c27d1acfe408f439f6726c8329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyCatch: {fileID: 0}
 --- !u!1 &3989217989361953910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,9 +1436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fc8caf852f1644abe4ff8199d1a607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveVersion: 0
-  _maxMoveSpeed: 5
-  _rotateSpeed: 25
+  _moveVersion: 1
+  _maxMoveSpeed: 6
+  _rotateSpeed: 5
   _acceleration: 5
   _desacceleration: 20
 --- !u!54 &7159650512555911426
@@ -1542,7 +1543,7 @@ MonoBehaviour:
   beerPickedUp: 0
   beerDrinkable: 0
   consumeSlider: {fileID: 0}
-  beerThrownPrefab: {fileID: 5570394460321494724, guid: a4f42eecf3fd7974a9841d79704ef8c3,
+  beerThrownPrefab: {fileID: 9000170640835840283, guid: cb369590f1d1fec469a9bc848fb6f332,
     type: 3}
 --- !u!114 &5752885611952665839
 MonoBehaviour:
