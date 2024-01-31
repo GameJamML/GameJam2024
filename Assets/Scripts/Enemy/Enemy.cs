@@ -63,6 +63,14 @@ public class Enemy : MonoBehaviour
         {
             transform.Rotate(45f, 0, 0);
         }
+
+        if (other.gameObject.CompareTag("Biberon"))
+        {
+            EnemyDeadEvent?.Invoke();
+
+            gameObject.SetActive(false);
+            enemyGenerator.pullEnemies.Add(gameObject);
+        }
     }
 
     public IEnumerator CaughtAnim()

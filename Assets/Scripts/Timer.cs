@@ -24,10 +24,11 @@ public class Timer : MonoBehaviour
         currentTimePassed += Time.deltaTime;
         minutePassed += Time.deltaTime;
 
-        if (minutePassed >= 60)
+        if (minutePassed >= 10)
         {
             minutePassed = 0;
             MinutePassed?.Invoke();
+            AudioManager.Instace.PlayerSFX(AudioType.Clock);
         }
         if(SecToMin(currentTimePassed) >= minutes)
         {

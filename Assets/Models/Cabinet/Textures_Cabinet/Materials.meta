@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Models/Cabinet/Textures_Cabinet/Materials.meta
 guid: 29ebb35961a282c45affb2638e21be27
 folderAsset: yes
+========
+guid: 641e024ce55b8594c9bec63c3f9b958f
+>>>>>>>> 2da8504f5361d9aa88ead784db35a4eb79ba4ccf:Assets/Scenes/Pol_Maresch_Scene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
