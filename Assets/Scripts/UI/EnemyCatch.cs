@@ -162,6 +162,7 @@ public class EnemyCatch : MonoBehaviour
 
             _panelManager.ChangeColor(Color.black);
 
+            StopCoroutine(EndToCatchAnim());
             StartCoroutine(StartToCatchAnim());
         }
     }
@@ -170,10 +171,9 @@ public class EnemyCatch : MonoBehaviour
     {
         AudioManager.Instace.PlayerSFX(AudioType.TryAgain);
 
-        _keyToPressList[_catchIndex].image.rectTransform.localScale = Vector3.one * _smallKeyScale;
-
-        for (int i = _catchIndex; i < _difficult; i++)
+        for (int i = 0; i < _difficult; i++)
         {
+            _keyToPressList[i].image.rectTransform.localScale = Vector3.one * _smallKeyScale;
             _keyToPressList[i].image.gameObject.SetActive(false);
         }
 
@@ -182,6 +182,7 @@ public class EnemyCatch : MonoBehaviour
 
         _panelManager.ChangeColor(new Color(0, 0, 0, 0));
 
+        StopCoroutine(StartToCatchAnim());
         StartCoroutine(EndToCatchAnim());
 
         // catch fail
@@ -251,6 +252,9 @@ public class EnemyCatch : MonoBehaviour
         }
 
         if (!Input.anyKeyDown || Input.GetMouseButtonDown(0))
+            return;
+
+        if (_keyToPressList.Count <= _catchIndex || _catchIndex < 0)
             return;
 
         // if press wrong key

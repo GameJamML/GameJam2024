@@ -9,12 +9,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject _attackRange;
     [SerializeField] private ParticleSystem _attackParticle;
 
-
     [SerializeField] private EnemyDetector _enemyDetector;
     public bool Attack { get => _isAttack; }
 
     private Animator _anim;
     private bool _isAttack = false;
+
+    [SerializeField, Range(0.1f, 5.0f)] private float _maxCoolDown = 0.5f;
+    private float _currentCoolDown = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +27,31 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _isAttack = true;
+        TryToAttack();
 
-            _enemyDetector._active = false;
-            
-            AudioManager.Instace.PlayerSFX(AudioType.Attack);
+        _anim.SetBool("Attack", _isAttack);
+    }
+
+    private void TryToAttack()
+    {
+        _currentCoolDown += Time.deltaTime;
+
+        if (_currentCoolDown >= _maxCoolDown)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _currentCoolDown = 0;
+
+                _isAttack = true;
+
+                _enemyDetector._active = false;
+
+                AudioManager.Instace.PlayerSFX(AudioType.Attack);
+            }
         }
 
         //Aim assistance
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && _isAttack)
         {
             if (_enemyDetector._targetInstanceID != -1)
             {
@@ -44,14 +60,14 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            BreakAttack();
-            _enemyDetector._active = true;
+            if (_isAttack)
+            {
+                BreakAttack();
+                _enemyDetector._active = true;
+            }
         }
-
-        _anim.SetBool("Attack", _isAttack);
     }
 
     private void StartAttack()
@@ -70,8 +86,8 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator TakeAttack()
     {
-        Vector3 _beginPos = new (0, 0, 0.28f);
-        Vector3 _endPos = new (0, 0, 0.9f);
+        Vector3 _beginPos = new(0, 0, 0.28f);
+        Vector3 _endPos = new(0, 0, 0.9f);
 
         for (float t = 0; t < 1; t += _attakDelaySpeed)
         {
@@ -88,8 +104,8 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator AttackEnding()
     {
-        Vector3 _beginPos = new (0, 0, 0.9f);
-        Vector3 _endPos = new (0, 0, 0.28f);
+        Vector3 _beginPos = new(0, 0, 0.9f);
+        Vector3 _endPos = new(0, 0, 0.28f);
 
         for (float t = 0; t < 1; t += _attakDelaySpeed)
         {
