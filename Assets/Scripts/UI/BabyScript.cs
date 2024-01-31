@@ -12,25 +12,15 @@ public class BabyScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().AtackEnemy();
+            other.gameObject.GetComponent<Enemy>().AtackEnemy(GetHit);
             //panicBar.ModifCharge(chargeValue);
         }
         
   
     }
 
-    private void OnTriggerStay(Collider other)
+    public void GetHit()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            if (other.gameObject.GetComponent<Enemy>().atack == true && shield.shieldActive == false)
-            {
-                
-                panicBar.ModifCharge(chargeValue);
-                other.gameObject.GetComponent<Enemy>().atack = false;
-
-                Debug.Log("ETS UN PUSSIMIM MARICON");
-            }
-        }
+        panicBar.ModifCharge(chargeValue);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,11 @@ public class Shield : MonoBehaviour
     public ShieldButton shieldButton;
     [SerializeField] private float hpReducer;
     [HideInInspector] public bool shieldActive;
+
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,19 +39,7 @@ public class Shield : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().AtackEnemy();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            if (other.gameObject.GetComponent<Enemy>().atack == true)
-            {
-                shieldBar.ModifCharge(-hpReducer);
-                other.gameObject.GetComponent<Enemy>().atack = false;
-            }
+            other.gameObject.GetComponent<Enemy>().AtackEnemyShield(GetHit);
         }
     }
 
@@ -60,7 +51,21 @@ public class Shield : MonoBehaviour
         }
         else
         {
+
             gameObject.SetActive(false);
         }
+    }
+
+    public bool GetHit()
+    {
+        shieldBar.ModifCharge(-hpReducer);
+        
+        if (shieldBar.ActualHP() <= 0)
+        {
+            return false;
+        }
+
+        return true;
+    
     }
 }

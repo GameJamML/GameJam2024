@@ -18,11 +18,15 @@ public class Enemy : MonoBehaviour
     // When has caught
     private Transform _mirrorTrans;
     private bool _finishedCaughtAnim = false;
-    [HideInInspector] public bool atack = false;
+    private bool atack = false;
     private bool startAtack = false;
     private float timer = 0;
     [SerializeField] private float cooldownAtack;
     
+    private Action _hitToBaby;
+    private Func<bool> _hitToShield;
+
+    public bool Atack { get { if (sleep) return false; else return atack; } set => atack = value; }
     void Start()
     {
 
@@ -32,7 +36,9 @@ public class Enemy : MonoBehaviour
 
         if (enemyGenerator == null)
             enemyGenerator = gameObject.GetComponentInParent<EnemyGenerator>();
-    }
+
+         cached = false;
+}
 
     private void OnEnable()
     {
@@ -60,13 +66,24 @@ public class Enemy : MonoBehaviour
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
 
-        if (startAtack == true)
+        if (startAtack == true && sleep == false)
         {
             timer += Time.deltaTime;
 
             if (timer >= cooldownAtack)
             {
-                atack = true;
+                if (_hitToShield != null)
+                {
+                    if (_hitToShield.Invoke() == false)
+                    {
+                        _hitToShield = null;
+                    }
+                }
+                else
+                    _hitToBaby?.Invoke();
+
+                
+
                 timer = 0f;
             }
         }
@@ -124,6 +141,7 @@ public class Enemy : MonoBehaviour
 
         // In coroutine
         StartCoroutine(CaughtAnim());
+        Debug.Log("DAWSDWADSDWAD");
     }
 
     public void EnemyEscaped()
@@ -168,6 +186,7 @@ public class Enemy : MonoBehaviour
             enemy.isStopped = true;
             sleep = true;
         }
+        
     }
 
     public void AwakeEnemy()
@@ -180,14 +199,24 @@ public class Enemy : MonoBehaviour
         sleep = false;
     }
 
-    public void AtackEnemy()
+    public void AtackEnemy(Action hitToBaby)
     {
+        if (_hitToBaby == null)
+        {
+            _hitToBaby = hitToBaby;
+            
+        }
         startAtack = true;
     }
-
-    public void stopEnemy()
-    {
-
+    
+    public void AtackEnemyShield(Func<bool> hitToShield)
+    { 
+        if (_hitToShield == null)
+        {
+            _hitToShield = hitToShield;
+            
+        }
+        startAtack = true;
     }
 
     private void resetAtack()
@@ -197,4 +226,10 @@ public class Enemy : MonoBehaviour
         timer = 0f;
     }
 
+    private void OnDestroy()
+    {
+        EnemyDeadEvent = null;
+        _hitToBaby = null;
+        _hitToShield = null;
+    }
 }
