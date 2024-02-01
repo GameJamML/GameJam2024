@@ -54,7 +54,7 @@ public class PanelManager : MonoBehaviour
 
         bool to = true;
 
-        Color beginColor = Color.white;
+        Color beginColor = Color.black;
         beginColor.a = 0;
 
         while (_flashing)

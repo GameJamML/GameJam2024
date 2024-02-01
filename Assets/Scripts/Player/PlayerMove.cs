@@ -21,8 +21,21 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerAttack _playerAttack;
 
+    public float MoveSpeed { get => _speed; }
+
     private void Start()
     {
+        int camera = PlayerPrefs.GetInt("Camera", 2);
+
+        if (camera == 1)
+        {
+            _moveVersion = MoveVersion.Version1;
+        }
+        else
+        {
+            _moveVersion = MoveVersion.Version2;
+        }
+
         _playerAnim = GetComponent<Animator>();
         _playerAttack = GetComponent<PlayerAttack>();
     }
