@@ -3417,7 +3417,7 @@ PrefabInstance:
     - target: {fileID: 2433773684816411845, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -20450,7 +20450,7 @@ PrefabInstance:
     - target: {fileID: 2433773684816411845, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -29827,7 +29827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 2127744819}
   teleVideo: {fileID: 913214151}
-  MaxTimer: 25
+  MaxTimer: 60
   _canInteractText: {fileID: 309339546}
 --- !u!65 &1894908144
 BoxCollider:
