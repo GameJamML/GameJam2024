@@ -765,7 +765,7 @@ PrefabInstance:
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: SpawnRangeZ
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -775,7 +775,7 @@ PrefabInstance:
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: generationrate
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -785,7 +785,7 @@ PrefabInstance:
     - target: {fileID: 7649491335783563817, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.3
+      value: -23.79
       objectReference: {fileID: 0}
     - target: {fileID: 7649491335783563817, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -795,7 +795,7 @@ PrefabInstance:
     - target: {fileID: 7649491335783563817, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.15
+      value: 25.97
       objectReference: {fileID: 0}
     - target: {fileID: 7649491335783563817, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
@@ -1842,7 +1842,7 @@ PrefabInstance:
     - target: {fileID: 1740740836715978288, guid: de574bb42a9eb1149aa93eef944de26c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6879958451027415374, guid: de574bb42a9eb1149aa93eef944de26c,
         type: 3}
@@ -2247,6 +2247,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxAimAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401091265208048668, guid: 5032c2469e121dd40bbfd292528255ae,
+        type: 3}
+      propertyPath: _maxCoolDown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7632516712669539806, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
@@ -4285,7 +4290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldBar: {fileID: 287794880}
   shieldButton: {fileID: 2082466596}
-  hpReducer: 20
+  hpReducer: 10
   shieldActive: 0
 --- !u!1 &253372174
 GameObject:
@@ -20411,7 +20416,7 @@ PrefabInstance:
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}
       propertyPath: generationrate
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4656621397252612735, guid: 593c2c24a1d2c5f4f9a0414aabf975f5,
         type: 3}

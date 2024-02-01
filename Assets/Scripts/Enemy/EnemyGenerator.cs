@@ -23,12 +23,17 @@ public class EnemyGenerator : MonoBehaviour
     private bool _sleep = false;
 
     [HideInInspector] public Action awakeEvent;
-    [HideInInspector] public Action sleepEvent; 
-
+    [HideInInspector] public Action sleepEvent;
+    int rateBytime;
     void Start()
     {
         CreatePool();
         stop = false;
+    }
+
+    private void OnEnable()
+    {
+        Timer.MinutePassed += SpawnerRate;
     }
 
     void Update()
@@ -115,4 +120,29 @@ public class EnemyGenerator : MonoBehaviour
 
         _sleep = false;
     }
+
+   public void SpawnerRate()
+    {
+        rateBytime++;
+        switch (rateBytime)
+        {
+            case 1:
+                generationrate -= 0.5f;
+                
+                break;
+            case 2:
+                generationrate -= 0.5f;
+                break;
+            case 3:
+                generationrate -= 0.5f;
+                break;
+            case 4:
+                generationrate -= 1f;
+                break;
+            default:
+                break;
+        }
+        Debug.Log(generationrate);
+    }
+
 }
