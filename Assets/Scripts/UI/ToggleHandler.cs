@@ -11,9 +11,7 @@ public class ToggleHandler : MonoBehaviour
 
     void Start()
     {
-
         _toggle.onValueChanged.AddListener(OnToggleChanged);
-
     }
 
     void OnToggleChanged(bool value)
@@ -33,11 +31,11 @@ public class ToggleHandler : MonoBehaviour
         {
             if (value)
             {
-                AudioManager.Instace.UnMuteSFX();
+                AudioManager.Instace.UnMuteBGM();
             }
             else
             {
-                AudioManager.Instace.MuteSFX();
+                AudioManager.Instace.MuteBGM();
             }
         }
     }
