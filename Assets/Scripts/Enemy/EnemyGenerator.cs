@@ -128,7 +128,6 @@ public class EnemyGenerator : MonoBehaviour
         {
             case 1:
                 generationrate -= 0.5f;
-                
                 break;
             case 2:
                 generationrate -= 0.5f;
