@@ -26,16 +26,16 @@ public class ChargeBar : MonoBehaviour
 
     public void ModifCharge(float amount)
     {
-        if (actualCharge >= 0)
+        if (actualCharge <= 0) actualCharge = 0;
+        
+        if (actualCharge <= maxCharge)
         {
-            if (actualCharge <= maxCharge)
-            {
-                actualCharge += amount;
-                _hpChangeEvent?.Invoke(ActualHP);
-            }
-            else
-                EndGameCharge();
+            actualCharge += amount;
+            _hpChangeEvent?.Invoke(ActualHP);
         }
+        else
+                EndGameCharge();
+       
 
 
         FillBar();
