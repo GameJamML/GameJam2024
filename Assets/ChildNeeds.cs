@@ -10,7 +10,7 @@ public class ChildNeeds : MonoBehaviour
     [SerializeField] Image imageNeeds;
     [SerializeField] ChargeBar panicBar;
     float currentNeedTimer = 0.0f;
-    float maxCurrentNeedTime = 3.5f;
+    float maxCurrentNeedTime = 5.5f;
     bool isSick = false;
     bool PillsPickedUp = false;
     public static Action<bool> OnChildSick;
@@ -29,9 +29,9 @@ public class ChildNeeds : MonoBehaviour
             if(currentNeedTimer > maxCurrentNeedTime)
             {
                 currentNeedTimer = 0.0f;
+
                 panicBar.ModifCharge(2.5f);
             }
-
         }
         else
         {
@@ -41,10 +41,8 @@ public class ChildNeeds : MonoBehaviour
 
     private void OnEnable()
     {
-
         Timer.MinutePassed += HealthNeedsOnGirl;
         Pills.OnPillsPickedUp += SetPillsPickedUp;
-
     }
 
     private void OnDisable()
@@ -72,7 +70,6 @@ public class ChildNeeds : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
             if(PillsPickedUp)
             {
                 imageNeeds.gameObject.SetActive(false);
@@ -80,7 +77,6 @@ public class ChildNeeds : MonoBehaviour
                 PillsPickedUp = false;
                 OnChildSick?.Invoke(false);
             }
-
         }
     }
 }

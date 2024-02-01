@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BeerMechanic : MonoBehaviour
 {
-
     public bool beerPickedUp = false;
     public bool beerDrinkable = false;
     bool beerEmpty = false;
@@ -17,14 +14,13 @@ public class BeerMechanic : MonoBehaviour
     FadeInFadeOutUI fadeOutUI;
 
     //Heal
-    float healingPerSecond = -4.5f;
+    float healingPerSecond = -8.5f;
     [SerializeField] ChargeBar panicBar;
 
     //Beer Throw Related
     [SerializeField] GameObject beerThrownPrefab;
     Vector3 forwardDir = Vector3.zero;
 
-    // Start is called before the first frame update
     void Start()
     {
         consumeSlider.minValue = 0.0f;
@@ -33,7 +29,6 @@ public class BeerMechanic : MonoBehaviour
         fadeOutUI.HideUIQuickly();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(beerPickedUp) 
@@ -43,9 +38,7 @@ public class BeerMechanic : MonoBehaviour
                 if (Input.GetKey(KeyCode.F))
                 {
                     if (!beerEmpty)
-                    {
                         BeerHealingLogic();
-                    }
                 }
                 else if (Input.GetKeyUp(KeyCode.F))
                 {
@@ -54,7 +47,7 @@ public class BeerMechanic : MonoBehaviour
                 }
             } 
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetMouseButtonDown(0))
             {
                 BeerThrowingLogic();
             }
@@ -92,7 +85,6 @@ public class BeerMechanic : MonoBehaviour
 
     void BeerThrowingLogic()
     {
-
         forwardDir = gameObject.transform.forward;
 
         GameObject beer = Instantiate(beerThrownPrefab, gameObject.transform.position + forwardDir, Quaternion.identity);
@@ -101,5 +93,4 @@ public class BeerMechanic : MonoBehaviour
         beerPickedUp = false;
         beerEmpty = false;
     }
-
 }

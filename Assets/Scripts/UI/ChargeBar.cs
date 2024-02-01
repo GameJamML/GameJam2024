@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class ChargeBar : MonoBehaviour
 {
     public Image barraDeCarrega;
     [SerializeField] private float maxCharge = 100;
-    public float actualCharge = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float actualCharge = 0;
 
-    // Update is called once per frame
-    void Update()
+    public float ActualHP { get => actualCharge; set => actualCharge = value; }
+
+    public Action<float> _hpChangeEvent;
+
+    private void Start()
     {
-       FillBar();
+        FillBar();
     }
 
     private void FillBar()
@@ -29,25 +26,25 @@ public class ChargeBar : MonoBehaviour
 
     public void ModifCharge(float amount)
     {
-        if (actualCharge <= maxCharge)
+        if (actualCharge >= 0)
         {
-            actualCharge += amount;
+            if (actualCharge <= maxCharge)
+            {
+                actualCharge += amount;
+                _hpChangeEvent?.Invoke(ActualHP);
+            }
+            else
+                EndGameCharge();
         }
-        else
-        {
-            EndGameCharge();
-        }
+
+
+        FillBar();
 
         return;
     }
-    
+
     public void EndGameCharge()
     {
         SceneManager.LoadScene("EndScene");
-    }
-    
-    public float ActualHP()
-    {
-        return actualCharge;
     }
 }

@@ -47,7 +47,9 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _audioSource = gameObject.AddComponent<AudioSource>();
+        if (_audioSource == null)
+            _audioSource = gameObject.GetComponent<AudioSource>();
+        
         _audioSource.loop = false;
     }
 
@@ -58,7 +60,7 @@ public class AudioManager : MonoBehaviour
         else
             _audioSource.pitch = pitch;
 
-       _audioSource.PlayOneShot(_audioDictionary[type]);
+        _audioSource.PlayOneShot(_audioDictionary[type]);
     }
 
     public void PlayerSFX(AudioClip clip)
@@ -68,15 +70,11 @@ public class AudioManager : MonoBehaviour
 
     public void MuteSFX()
     {
-
         _audioSource.volume = 0.0f;
-
     }
 
     public void UnMuteSFX()
     {
-
         _audioSource.volume = 1.0f;
-
     }
 }

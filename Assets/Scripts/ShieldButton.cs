@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShieldButton : MonoBehaviour
@@ -16,6 +17,7 @@ public class ShieldButton : MonoBehaviour
     private float timer = 0;
 
     [SerializeField] private float cooldownButton;
+    [SerializeField] private TextMeshProUGUI _canInteractText;
 
     private bool resetButton = false;
 
@@ -29,7 +31,7 @@ public class ShieldButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canStopped == true)
+        if (Input.GetKeyDown(KeyCode.E) && canStopped == true && button_pCylinder2.transform.position == pCylinder2_initialPosition)
         {
             StartButton();
         }
@@ -41,7 +43,7 @@ public class ShieldButton : MonoBehaviour
             if (timer >= cooldownButton)
             {
                 shieldStopped = true;
-                canStopped = true;
+                canStopped = false;
                 button_pCylinder2.transform.position = pCylinder2_initialPosition;
                 buttonLight.color = new Color(1, 0, 0);
                 timer = 0f;
@@ -54,10 +56,30 @@ public class ShieldButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _canInteractText.gameObject.SetActive(true);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && canStopped == false)
         {
             canStopped = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _canInteractText.gameObject.SetActive(false);
+        }
+
     }
 
 
@@ -76,6 +98,7 @@ public class ShieldButton : MonoBehaviour
         shieldStopped = false;
         canStopped = false;
         ShieldBarGO.SetActive(true);
+        _canInteractText.gameObject.SetActive(false);
     }
 
 }

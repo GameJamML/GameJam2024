@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -16,6 +17,7 @@ public class Television : MonoBehaviour
 
     private float normalTime = 0;
     [SerializeField] private float MaxTimer;
+    [SerializeField] private TextMeshProUGUI _canInteractText;
     void Start()
     {
         teleLight = gameObject.GetComponentInChildren<Light>();
@@ -26,7 +28,7 @@ public class Television : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && canStopped == true)
+        if (Input.GetKeyDown(KeyCode.E) && canStopped == true)
         {
             spawner.stop = true;
             teleVideo.Stop();
@@ -38,6 +40,14 @@ public class Television : MonoBehaviour
             StopTelevision();
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _canInteractText.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -53,6 +63,7 @@ public class Television : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             canStopped = false;
+            _canInteractText.gameObject.SetActive(false);
         }
     }
 
