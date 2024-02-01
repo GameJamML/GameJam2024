@@ -8,6 +8,11 @@ public class Clock : MonoBehaviour
     int spriteNumber;
     public Renderer _Color;
     public Material[] materials;
+
+    private float sec = 0;
+
+    private float maxsec = 60;
+
     void Start()
     {
         spriteNumber = 0;
@@ -16,13 +21,19 @@ public class Clock : MonoBehaviour
 
     private void OnEnable()
     {
-        Timer.MinutePassed += SwapSpriteClock;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        sec += Time.deltaTime;
+
+        if (sec >= maxsec)
+        {
+            SwapSpriteClock();
+            AudioManager.Instace.PlayerSFX(AudioType.Clock);
+            sec = 0f;
+        }
     }
 
     void SwapSpriteClock()
