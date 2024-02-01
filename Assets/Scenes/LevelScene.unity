@@ -29699,7 +29699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 2127744819}
   teleVideo: {fileID: 913214151}
-  MaxTimer: 60
+  MaxTimer: 35
   _canInteractText: {fileID: 309339546}
 --- !u!65 &1894908144
 BoxCollider:

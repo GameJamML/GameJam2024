@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour
         if(SecToMin(currentTimePassed) >= minutes)
         {
            
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene("WinSceene");
 
         }
     }
