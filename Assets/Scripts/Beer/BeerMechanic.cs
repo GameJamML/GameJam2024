@@ -72,7 +72,7 @@ public class BeerMechanic : MonoBehaviour
             //Beer Finished
             consumeSlider.value = 0.0f;
             beerEmpty = true;
-
+            currentTime = 0.0f;
             fadeOutUI.fadeOut = true;
             fadeOutUI.fadeIn = false;
         }
@@ -89,6 +89,9 @@ public class BeerMechanic : MonoBehaviour
 
         GameObject beer = Instantiate(beerThrownPrefab, gameObject.transform.position + forwardDir, Quaternion.identity);
         beer.GetComponent<BeerThrow>().GatherInfo(forwardDir);
+
+        consumeSlider.value = 0.0f;
+        currentTime = 0.0f;
 
         beerPickedUp = false;
         beerEmpty = false;
