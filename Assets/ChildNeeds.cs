@@ -10,7 +10,7 @@ public class ChildNeeds : MonoBehaviour
     [SerializeField] Image imageNeeds;
     [SerializeField] ChargeBar panicBar;
     float currentNeedTimer = 0.0f;
-    float maxCurrentNeedTime = 3.5f;
+    float maxCurrentNeedTime = 5.5f;
     bool isSick = false;
     bool PillsPickedUp = false;
     public static Action<bool> OnChildSick;

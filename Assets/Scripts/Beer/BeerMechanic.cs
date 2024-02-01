@@ -14,7 +14,7 @@ public class BeerMechanic : MonoBehaviour
     FadeInFadeOutUI fadeOutUI;
 
     //Heal
-    float healingPerSecond = -4.5f;
+    float healingPerSecond = -8.5f;
     [SerializeField] ChargeBar panicBar;
 
     //Beer Throw Related
