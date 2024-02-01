@@ -1711,6 +1711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1740740836715978288, guid: de574bb42a9eb1149aa93eef944de26c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6879958451027415374, guid: de574bb42a9eb1149aa93eef944de26c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2101,7 +2106,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60.000004
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -2127,8 +2132,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95846042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.052229658, y: -0.2893517, z: 0.015811585, w: 0.9556662}
-  m_LocalPosition: {x: -7.265072, y: 2.0410624, z: 9.489153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.619306, y: 2.0686631, z: 2.392335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2308,6 +2313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249010066789371014, guid: 5032c2469e121dd40bbfd292528255ae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.287
       objectReference: {fileID: 0}
     - target: {fileID: 1249010066789371014, guid: 5032c2469e121dd40bbfd292528255ae,
         type: 3}
@@ -4854,7 +4864,7 @@ PrefabInstance:
     - target: {fileID: 5165320574679298030, guid: 0f0d254edf16b414c9ff25a442a5e770,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6103694877265819554, guid: 0f0d254edf16b414c9ff25a442a5e770,
         type: 3}
@@ -10273,7 +10283,7 @@ PrefabInstance:
     - target: {fileID: 2252599369692323281, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2425629213389539411, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
         type: 3}
@@ -10308,12 +10318,12 @@ PrefabInstance:
     - target: {fileID: 7529210914775346614, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00073639705
+      value: 0.0007363971
       objectReference: {fileID: 0}
     - target: {fileID: 7529210914775346614, guid: b7c9b4b2f9d26704cac0462c0c9279a9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0041751964
+      value: -0.004175197
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18640,7 +18650,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024998743}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27cee4a5a66fba409b9fba531ec6390, type: 3}
   m_Name: 
@@ -18657,7 +18667,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 40bd45be3012ee94a9616247c6e1dfbf, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -32168,7 +32178,7 @@ PrefabInstance:
     - target: {fileID: 165719791597286521, guid: c89e1bf498c7f8c47ae425cb942ffcad,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 518867177921418094, guid: c89e1bf498c7f8c47ae425cb942ffcad,
         type: 3}
