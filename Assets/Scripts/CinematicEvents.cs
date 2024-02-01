@@ -12,18 +12,15 @@ public enum CinematicName
 public class CinematicEvents : MonoBehaviour
 {
     [SerializeField] private CinematicName cinematicName = CinematicName.Opening;
-    private PlayableDirector director;
-    private bool waitingToSwitchScene = false;
 
     void Start()
     {
-        director = GetComponent<PlayableDirector>();
 
         switch (cinematicName)
         {
             case CinematicName.Opening:
             {
-                director.played += OnCinematicStopped;
+                AudioManager.Instace.MuteBGM();
             }
             break;
         }
@@ -31,32 +28,10 @@ public class CinematicEvents : MonoBehaviour
 
     private void Update()
     {
-        switch (cinematicName)
+        if (Input.anyKeyDown)
         {
-            case CinematicName.Opening:
-                {
-                    if (waitingToSwitchScene)
-                    {
-                        if (Input.anyKeyDown)
-                        {
-                            SceneManager.LoadScene(sceneBuildIndex: 1);
-                        }
-                    }
-                }
-                break;
+            SceneManager.LoadScene(sceneBuildIndex: 1);
+            AudioManager.Instace.UnMuteBGM();
         }
     }
-
-    private void OnCinematicStopped(PlayableDirector director)
-    {
-        switch (cinematicName)
-        {
-            case CinematicName.Opening:
-            {
-                waitingToSwitchScene = true;
-            }
-            break;
-        }
-    }
-
 }

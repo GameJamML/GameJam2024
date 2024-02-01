@@ -88,11 +88,11 @@ public class AudioManager : MonoBehaviour
 
     public void MuteBGM()
     {
-        _audioSource.volume = 0;
+        _bgm.volume = 0;
     }
 
     public void UnMuteBGM()
     {
-        _audioSource.volume = 1.0f;
+        _bgm.volume = 1.0f;
     }
 }

@@ -115,7 +115,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 1
-    - _Transparency: 0.31010246
+    - _Transparency: 0.40628052
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
