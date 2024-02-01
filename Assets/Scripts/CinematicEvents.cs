@@ -30,8 +30,8 @@ public class CinematicEvents : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene(sceneBuildIndex: 1);
             AudioManager.Instace.UnMuteBGM();
+            SceneManager.LoadScene(sceneBuildIndex: 1);
         }
     }
 }
