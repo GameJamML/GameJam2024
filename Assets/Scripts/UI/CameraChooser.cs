@@ -14,15 +14,11 @@ public class CameraChooser : MonoBehaviour
         {
             _camera1Toggle.isOn = true;
             _camera2Toggle.isOn = false;
-
-            _camera2Toggle.interactable = false;
         }
         else
         {
             _camera1Toggle.isOn = false;
             _camera2Toggle.isOn = true;
-
-            _camera1Toggle.interactable = false;
         }
     }
 
@@ -33,26 +29,14 @@ public class CameraChooser : MonoBehaviour
             if (!_camera1Toggle.isOn)
                 return;
 
-            _camera1Toggle.isOn = false;
-            _camera1Toggle.interactable = false;
-
-            _camera2Toggle.isOn = true;
-            _camera2Toggle.interactable = true;
-
-            PlayerPrefs.SetInt("Camera", 2);
+            PlayerPrefs.SetInt("Camera", 1);
         }
         else
         {
             if (!_camera2Toggle.isOn)
                 return;
 
-            _camera1Toggle.isOn = true;
-            _camera1Toggle.interactable = true;
-
-            _camera2Toggle.isOn = false;
-            _camera2Toggle.interactable = false;
-
-            PlayerPrefs.SetInt("Camera", 1);
+            PlayerPrefs.SetInt("Camera", 2);
         }
     }
 }

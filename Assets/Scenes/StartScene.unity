@@ -1475,6 +1475,7 @@ GameObject:
   - component: {fileID: 331259211}
   - component: {fileID: 331259213}
   - component: {fileID: 331259212}
+  - component: {fileID: 331259214}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -1542,6 +1543,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331259210}
   m_CullTransparentMesh: 1
+--- !u!114 &331259214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331259210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &345631762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1650,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 722179315}
   - {fileID: 1017123372}
   - {fileID: 14689528}
   - {fileID: 664259773}
@@ -1643,7 +1658,6 @@ RectTransform:
   - {fileID: 910479828}
   - {fileID: 148576100}
   - {fileID: 1398512982}
-  - {fileID: 722179315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5039,23 +5053,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903694885}
   toggleTransition: 1
   graphic: {fileID: 525614179}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 331259214}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 722179316}
-        m_TargetAssemblyTypeName: CameraChooser, Assembly-CSharp
-        m_MethodName: OnCameraSwitch
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 1
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1001 &1279382080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6330,22 +6332,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 151160365}
   toggleTransition: 1
   graphic: {fileID: 923470744}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 331259214}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 722179316}
-        m_TargetAssemblyTypeName: CameraChooser, Assembly-CSharp
-        m_MethodName: OnCameraSwitch
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!224 &1456556413
 RectTransform:

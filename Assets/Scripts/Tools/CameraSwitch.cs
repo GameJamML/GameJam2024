@@ -7,7 +7,9 @@ public class CameraSwitch : MonoBehaviour
 
     private void Start()
     {
-        int camera = PlayerPrefs.GetInt("Camera", 2);
+        int camera = PlayerPrefs.GetInt("Camera", 1);
+
+        Debug.Log("Camera Type: " + camera);
 
         if (camera == 1)
         {
