@@ -41,13 +41,13 @@ public class ChildNeeds : MonoBehaviour
 
     private void OnEnable()
     {
-        Timer.MinutePassed += HealthNeedsOnGirl;
+        Timer.TwoMinutesPassed += HealthNeedsOnGirl;
         Pills.OnPillsPickedUp += SetPillsPickedUp;
     }
 
     private void OnDisable()
     {
-        Timer.MinutePassed -= HealthNeedsOnGirl;
+        Timer.TwoMinutesPassed -= HealthNeedsOnGirl;
         Pills.OnPillsPickedUp -= SetPillsPickedUp;
     }
 

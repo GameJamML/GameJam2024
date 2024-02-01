@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instace = null;
 
     [SerializeField] private AudioSource _audioSource = null;
+    [SerializeField] private AudioSource _bgm = null;
 
     // Resources of audio
     [SerializeField]
@@ -68,12 +69,29 @@ public class AudioManager : MonoBehaviour
         _audioSource.PlayOneShot(clip);
     }
 
+    public void PlayerBGM(AudioClip clip)
+    {
+        _bgm.clip = clip;
+
+        _bgm.Pause();
+    }
+
     public void MuteSFX()
     {
         _audioSource.volume = 0.0f;
     }
 
     public void UnMuteSFX()
+    {
+        _audioSource.volume = 1.0f;
+    }
+
+    public void MuteBGM()
+    {
+        _audioSource.volume = 0;
+    }
+
+    public void UnMuteBGM()
     {
         _audioSource.volume = 1.0f;
     }

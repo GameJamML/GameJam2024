@@ -35,12 +35,12 @@ public class BeerMechanic : MonoBehaviour
         {
             if(beerDrinkable)
             {
-                if (Input.GetKey(KeyCode.F))
+                if (Input.GetKey(KeyCode.E))
                 {
                     if (!beerEmpty)
                         BeerHealingLogic();
                 }
-                else if (Input.GetKeyUp(KeyCode.F))
+                else if (Input.GetKeyUp(KeyCode.E))
                 {
                     fadeOutUI.fadeOut = true;
                     fadeOutUI.fadeIn = false;

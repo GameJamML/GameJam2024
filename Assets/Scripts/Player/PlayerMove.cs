@@ -25,9 +25,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        int camera = PlayerPrefs.GetInt("Camera", 2);
+        int camera = PlayerPrefs.GetInt("Camera", 1);
 
-        if (camera == 1)
+        if (camera == 2)
         {
             _moveVersion = MoveVersion.Version1;
         }
