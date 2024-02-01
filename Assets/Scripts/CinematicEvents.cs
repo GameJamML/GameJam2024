@@ -13,7 +13,7 @@ public class CinematicEvents : MonoBehaviour
 {
     [SerializeField] private CinematicName cinematicName = CinematicName.Opening;
     private PlayableDirector director;
-    private bool cinematicStarted = false;
+    private bool waitingToSwitchScene = false;
 
     void Start()
     {
@@ -23,35 +23,40 @@ public class CinematicEvents : MonoBehaviour
         {
             case CinematicName.Opening:
             {
-                director.Pause();
+                director.played += OnCinematicStopped;
             }
             break;
         }
     }
 
-    void Update()
+    private void Update()
+    {
+        switch (cinematicName)
+        {
+            case CinematicName.Opening:
+                {
+                    if (waitingToSwitchScene)
+                    {
+                        if (Input.anyKeyDown)
+                        {
+                            SceneManager.LoadScene(sceneBuildIndex: 1);
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    private void OnCinematicStopped(PlayableDirector director)
     {
         switch (cinematicName)
         {
             case CinematicName.Opening:
             {
-                if (cinematicStarted)
-                {
-                    if (director.state != PlayState.Playing)
-                    {
-                         SceneManager.LoadScene(sceneBuildIndex: 1);
-                    }
-                }
-                else
-                {
-                    if (Input.anyKeyDown)
-                    {
-                        director.Play();
-                        cinematicStarted = true;
-                    }
-                }
+                waitingToSwitchScene = true;
             }
             break;
         }
     }
+
 }

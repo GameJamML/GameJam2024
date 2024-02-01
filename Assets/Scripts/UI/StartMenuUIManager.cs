@@ -61,7 +61,7 @@ public class StartMenuUIManager : MonoBehaviour
 
     public void OnStartPressed() 
     {
-        SceneManager.LoadScene("LevelScene");
+        SceneManager.LoadScene(sceneBuildIndex: 4);
     }
 
     public void OnOptionsPressed()

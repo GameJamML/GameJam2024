@@ -69,10 +69,10 @@ public class EnemyCatch : MonoBehaviour
 
     [SerializeField, Header("Only for read")] private bool _startCatching = false;
 
-    [SerializeField, Range(5, 20), Space] private float _maxCoolDown = 6.0f;
+    [Range(5, 20), Space] public float _maxCoolDown = 6.0f;
     private float _coolDown = 0;
 
-    private int _difficult = 5;
+    [Range(3, 10)] public int _difficult = 3;
 
     public Action<bool> endToCatch;
 
@@ -114,6 +114,8 @@ public class EnemyCatch : MonoBehaviour
 
             _keyToPressList.Add(kp);
         }
+
+        Timer.MinutePassed += NexLevel;
     }
 
     private void OnDestroy()
@@ -124,12 +126,21 @@ public class EnemyCatch : MonoBehaviour
         }
 
         _keyToPressList.Clear();
+
+        Timer.MinutePassed -= NexLevel;
     }
 
     // Update is called once per frame
     void Update()
     {
         TryToCatch();
+    }
+
+    private void NexLevel()
+    {
+        _maxCoolDown -= 0.2f;
+
+        _difficult++;
     }
 
     public void StartToCatch()

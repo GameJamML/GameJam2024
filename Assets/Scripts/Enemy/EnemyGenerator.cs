@@ -130,18 +130,17 @@ public class EnemyGenerator : MonoBehaviour
                 generationrate -= 0.5f;
                 break;
             case 2:
-                generationrate -= 0.5f;
+                generationrate -= 1f;
                 break;
             case 3:
-                generationrate -= 0.5f;
+                generationrate -= 1f;
                 break;
             case 4:
-                generationrate -= 1f;
+                generationrate -= 1.5f;
                 break;
             default:
                 break;
         }
-        Debug.Log(generationrate);
     }
 
 }

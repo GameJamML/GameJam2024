@@ -30,7 +30,6 @@ public class Shield : MonoBehaviour
         if (active == true)
         {
             gameObject.SetActive(true);
-            Debug.Log(shieldBar.ActualHP);
         }
         else
         {

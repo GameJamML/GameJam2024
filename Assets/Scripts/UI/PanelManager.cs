@@ -11,8 +11,6 @@ public class PanelManager : MonoBehaviour
 
     private Color _destinationColor;
 
-    private bool _hasEvent = false;
-
     private bool _flashing = false;
 
     private void Start()
@@ -25,15 +23,11 @@ public class PanelManager : MonoBehaviour
         _destinationColor = color;
 
         if (_flashing)
-        {
-            _hasEvent = true;
-        }
-        else
-        {
-            StopCoroutine(ChangeColorAnim());
+            return;
 
-            StartCoroutine(ChangeColorAnim());
-        }
+        StopCoroutine(ChangeColorAnim());
+
+        StartCoroutine(ChangeColorAnim());
     }
 
     public void StartFlashEvent(Color color)
@@ -99,7 +93,5 @@ public class PanelManager : MonoBehaviour
 
             yield return null;
         }
-
-
     }
 }

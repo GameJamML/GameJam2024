@@ -20,7 +20,7 @@ public class BeerDrinkable : MonoBehaviour
             }
             else if(biberonPickedUp && drinkable)
             {
-                healText.text = "Hold F for Calm Baby with the baby bottle\r\n";
+                healText.text = "Hold E for Calm Baby with the baby bottle\r\n";
             }
         }
     }
