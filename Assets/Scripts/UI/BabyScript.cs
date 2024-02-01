@@ -4,8 +4,6 @@ public class BabyScript : MonoBehaviour
 {
     public ChargeBar panicBar;
     [SerializeField] private float chargeValue;
-    [SerializeField] private float enemyCooldown;
-    public Shield shield;
 
     private void OnTriggerEnter(Collider other)
     {

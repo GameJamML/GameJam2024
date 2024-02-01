@@ -141,7 +141,6 @@ public class EnemyGenerator : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log(generationrate);
     }
 
 }
